@@ -34,14 +34,15 @@ Everything — both arms, the omni base, the lift, the cameras — goes through 
 
 ## 1. Wire the robot to the Pi 4
 
-The Pi 4 differs from the Pi 5 in the BOM in two ways that matter: **its four USB ports share one USB 3.0 controller** (and there are only four of them — you need seven devices), and **its USB ports can supply about 1.2 A in total**. So the cameras go on a **powered** USB 3.0 hub.
+The Pi 4 differs from the Pi 5 in the BOM in ways that matter. Per the official Pi docs, all four ports hang off one VL805 controller and **every USB 2.0 device on a Pi 4 shares a single 480 Mbit/s USB 2.0 bus, whichever port or hub it is on**. The 720p cameras are USB 2.0 devices, so a hub adds ports and power but never bandwidth; MJPG (section 5) is what makes five cameras fit. The ports also supply about **1.2 A in total**. So: cameras on a **powered** hub, servo boards on the Pi's own ports.
 
 | Connection | From | To | Notes |
 |---|---|---|---|
-| Pi power | 12 V battery #1 → 12 V→5 V/5 A buck converter | Pi 4 **USB-C power** port | Set the buck to 5.1 V. Short, thick USB-C cable. The Pi 4 wants 5 V / 3 A. |
+| Pi power | 12 V battery #1 → 12 V→5 V/5 A buck converter | Pi 4 **USB-C power** port | Set the buck to 5.1 V measured at the Pi. Short, thick USB-C cable. The Pi 4 wants 5.1 V / 3 A and logs under-voltage below 4.63 V. If the red LED flickers, add a 1000–3300 µF capacitor across the buck output. Keep this battery separate from the servo battery (the reference design does). |
 | Servo power | 12 V battery #2 → 1-to-2 DC splitter → two DC extension cables | Left arm chain and right arm chain | The base wheels (IDs 8/9/10) and lift (ID 11) are on the **left** arm's chain, so battery #2 powers arms + base + lift. |
 | Left Waveshare board | USB-C **data** cable | Pi 4 **USB 2.0** port (black) | This board has two cables on it: the left arm chain and the 90 cm cable to base servo #11. |
 | Right Waveshare board | USB-C **data** cable | Pi 4 **USB 2.0** port (black) | Arm only. |
+| Waveshare jumper (both boards) | — | — | Jumper in the **USB (B)** position, not UART (A). The chip is a CH343 and appears as `/dev/ttyACM*` through the kernel's own cdc-acm driver; do **not** install WCH's vendor driver (it renames ports to `ttyCH343USB*`). |
 | Cameras (up to 5) | USB | **Powered USB 3.0 hub** → Pi 4 **USB 3.0** port (blue) | Keep servo boards off the camera hub so servo latency isn't shared with video. |
 | 7-inch display (optional) | HDMI + USB-C power | Pi 4 micro-HDMI 0 | Only for first boot / debugging. |
 
@@ -52,6 +53,7 @@ Sanity checks after wiring:
 ls /dev/ttyACM*              # expect 2 entries (the two Waveshare boards)
 ls /dev/video*               # 2 entries per camera (capture + metadata)
 vcgencmd get_throttled       # 0x0 = power is fine; 0x50005 = under-voltage, fix the buck/cable
+dmesg | grep -i -E "voltage|usb" | tail   # under-voltage entries and USB enumeration
 ```
 
 ---
@@ -82,6 +84,12 @@ scp -r "/Users/skyler/Projects/research/Robotics/Aloha Mini/pi4" pi@alohamini.lo
 # on the Pi
 bash ~/pi4/install_pi4.sh
 sudo reboot            # applies the dialout group
+```
+
+The installer finishes by importing torch. **On a Pi 4 this is the one step that can fail with `Illegal instruction`:** some PyTorch aarch64 wheels use LSE atomic instructions that the Pi 4's Cortex-A72 lacks. It bit torch 2.4.0 and 2.6.0 (pytorch issue 132032; lerobot issue 1738 was exactly this on a Pi 4). The repo pins torch 2.7–2.11 and nobody has confirmed those on a Pi 4. If it dies, pin a different CPU build and rerun the installer:
+
+```bash
+pip install --no-cache-dir --force-reinstall "torch==2.7.1" "torchvision==0.22.1"   # or try 2.8.x / 2.9.x
 ```
 
 After reboot, every Pi command below assumes:
@@ -118,7 +126,7 @@ Camera names used by the code → physical camera (my mapping; only consistency 
 
 ## 5. Turn cameras on in the config (and use MJPG)
 
-`src/lerobot/robots/alohamini/config_alohamini.py` on the Pi enables only `forward` and `wrist_right` by default. **Start with those two.** Uncomment more once the loop is stable. Add `fourcc="MJPG"` to each camera — uncompressed YUYV at 640×480×30 fps is ~18 MB/s per camera and will saturate the hub; MJPG is ~1–3 MB/s.
+`src/lerobot/robots/alohamini/config_alohamini.py` on the Pi enables only `forward` and `wrist_right` by default. **Start with those two.** Uncomment more once the loop is stable. Add `fourcc="MJPG"` to each camera. Without it OpenCV negotiates uncompressed YUYV, which at 640×480×30 is about **147 Mbit/s per camera**: two cameras already exceed the Pi 4's single 480 Mbit/s USB 2.0 bus and the frame rate sags silently. MJPG is about **9 Mbit/s per camera**, so all five fit (~45 Mbit/s). Upstream LeRobot pinned MJPG for LeKiwi in July 2026 (issue 4082); the AlohaMini fork has not, so add it yourself.
 
 ```python
 def alohamini_cameras_config() -> dict[str, CameraConfig]:
@@ -253,6 +261,8 @@ Then `--robot.remote_ip 100.101.102.103` (or just `alohamini` with MagicDNS). SS
 
 Bandwidth: each camera is roughly 40 KB per JPEG at quality 70, so at 30 fps two cameras ≈ 20 Mbit/s **upload from the robot's WiFi**; five cameras ≈ 50 Mbit/s. Over the internet use `--camera-fps 10` (2 cams ≈ 7 Mbit/s). Control packets are tiny; latency is what you feel, and the base stops itself if no command arrives for 1 s (watchdog).
 
+Nobody has published LeRobot ZMQ teleop over Tailscale, but the client only does a plain TCP connect to whatever IP you give it, so nothing else changes. Two timeouts bite on a slow path: the host halts motion after 1 s without a command, and the client's observation poll gives up after 200 ms. If you see stalls, confirm `tailscale status` shows a direct path and drop to `--fps 10 --camera-fps 10` while debugging.
+
 ---
 
 ## 10. What to expect from a Pi 4
@@ -277,6 +287,10 @@ Bandwidth: each camera is roughly 40 KB per JPEG at quality 70, so at 30 fps two
 | Arms twitch / jitter | Lower `--camera-fps`, then `max_loop_freq_hz`; check `--profile_timing`; check servo battery. |
 | Lift slams on start | Expected homing move — clear the path. Set `connection_time_s` high so it doesn't repeat every 100 min. |
 | Mac `import lerobot` fails | Wrong env: `conda activate lerobot_alohamini` (not `lerobot`). |
+| `Illegal instruction` on the Pi for any lerobot command | torch wheel uses LSE atomics the Cortex-A72 lacks. `pip install --force-reinstall "torch==2.7.1" "torchvision==0.22.1"` (or another version) and retry. |
+| Boards appear as `/dev/ttyCH343USB0`, not `ttyACM` | WCH vendor driver installed. Remove it; the kernel cdc-acm driver is the right one. |
+| Board powered but no `/dev/ttyACM*` | Waveshare jumper in UART (A). Move it to USB (B). Also check the USB-C cable carries data. |
+| Red power LED off or flickering | Under-voltage. Same fix as the lightning bolt. |
 
 ---
 

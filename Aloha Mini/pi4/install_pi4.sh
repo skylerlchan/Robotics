@@ -42,6 +42,22 @@ git pull --ff-only || true
 pip install --no-cache-dir -e ".[lekiwi,hardware]"
 pip install --no-cache-dir pyzmq feetech-servo-sdk
 
+echo "== [5b] torch import check (Pi 4 = Cortex-A72, no LSE atomics; some torch aarch64 wheels die with 'Illegal instruction')"
+if [ -n "${TORCH_SPEC:-}" ]; then
+  # e.g.  TORCH_SPEC='torch==2.7.1 torchvision==0.22.1' bash install_pi4.sh
+  # shellcheck disable=SC2086
+  pip install --no-cache-dir --force-reinstall $TORCH_SPEC
+fi
+if ! python -c "import torch; print('torch', torch.__version__, 'imports OK')"; then
+  cat <<'MSG'
+!! torch failed to import. Exit code 132 / 'Illegal instruction' means this wheel uses CPU instructions the Pi 4 lacks
+   (pytorch/pytorch#132032, huggingface/lerobot#1738). Re-run with a different pinned CPU build, e.g.:
+     TORCH_SPEC='torch==2.7.1 torchvision==0.22.1' bash ~/pi4/install_pi4.sh
+   and if that also fails try 2.8.x or 2.9.x.
+MSG
+  exit 1
+fi
+
 echo "== [6/6] sanity check"
 python - <<'PY'
 import lerobot, zmq, cv2, scservo_sdk, serial
