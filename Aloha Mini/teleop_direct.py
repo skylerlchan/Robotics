@@ -73,7 +73,11 @@ def main():
     ap.add_argument("--wait-for-power", action="store_true",
                     help="if the follower bus is under 9 V, poll until the 12 V supply appears, then start")
     ap.add_argument("--dry-run", action="store_true", help="never enable torque; only print what would be sent")
+    ap.add_argument("--fast", action="store_true",
+                    help="low-latency profile: 100 Hz loop, servo speed cap 3000 ticks/s, accel 60, max-step 80")
     args = ap.parse_args()
+    if args.fast:
+        args.hz, args.speed, args.accel, args.max_step = 100.0, 3000, 60, 80
 
     offsets = {j: 0 for j in JOINTS}
     for spec in args.offset:
@@ -109,6 +113,18 @@ def main():
             lo, hi = LIMITS[j]
             t[j] = int(clamp(v, lo, hi))
         return t
+
+    # tighten software limits with the follower's own calibrated servo limits
+    for j in JOINTS:
+        try:
+            mn = follower.read("Min_Position_Limit", j, normalize=False)
+            mx = follower.read("Max_Position_Limit", j, normalize=False)
+            if 0 < mn < mx < 4096:
+                lo, hi = LIMITS[j]
+                LIMITS[j] = (max(lo, mn), min(hi, mx))
+        except Exception as e:
+            print(f"[limits] could not read servo limits for {j}: {e}")
+    print("[limits] follower clamp (ticks): " + " ".join(f"{j[:5]}=[{LIMITS[j][0]},{LIMITS[j][1]}]" for j in JOINTS))
 
     leader.disable_torque()  # leader must stay free to move by hand
     goal = follower.sync_read("Present_Position", normalize=False)
@@ -151,10 +167,12 @@ def main():
     t_start = time.time()
     last_log = 0.0
     fails = 0
-    MAX_FAILS = 10          # consecutive bad cycles before we drop the ports and reconnect
+    MAX_FAILS = 10
+    stats = {k: [] for k in ("rd_lead", "rd_fol", "wr", "period", "lag", "vel")}
+    prev_raw, prev_t, last_cycle = None, 0.0, None          # consecutive bad cycles before we drop the ports and reconnect
 
     def reconnect():
-        nonlocal leader, follower, goal, start_pose, t_start, fails
+        nonlocal leader, follower, goal, start_pose, t_start, fails, prev_raw, last_cycle
         print("\n[teleop] bus dropout — closing ports, waiting for the boards to come back ...", flush=True)
         for b in (leader, follower):
             try: b.port_handler.closePort()
@@ -175,6 +193,7 @@ def main():
                 arm_follower(follower, goal)
                 t_start = time.time()      # soft-start again from wherever the follower is now
                 fails = 0
+                prev_raw, last_cycle = None, None
                 print(f"[teleop] reconnected ({vf:.1f} V); soft start {args.ramp:.0f}s", flush=True)
                 return
             except Exception as e:
@@ -187,7 +206,24 @@ def main():
         while True:
             t0 = time.time()
             try:
+                t_r0 = time.perf_counter()
                 raw = leader.sync_read("Present_Position", normalize=False)
+                t_r1 = time.perf_counter()
+                pres = follower.sync_read("Present_Position", normalize=False)
+                t_r2 = time.perf_counter()
+                stats["rd_lead"].append((t_r1 - t_r0) * 1e3)
+                stats["rd_fol"].append((t_r2 - t_r1) * 1e3)
+                # motion-lag estimate: how far the follower trails the leader, in time, on the fastest joint
+                if prev_raw is not None:
+                    dt_l = t0 - prev_t
+                    vel = {j: (raw[j] - prev_raw[j]) / dt_l for j in JOINTS}
+                    jf = max(JOINTS, key=lambda j: abs(vel[j]))
+                    if abs(vel[jf]) > 150:  # ticks/s (~13°/s) — only when the leader is really moving
+                        tgt_now = target_from_leader(raw)[jf]
+                        lag_s = (tgt_now - pres[jf]) / (sign[jf] * vel[jf])
+                        stats["lag"].append(max(0.0, min(lag_s, 2.0)) * 1e3)
+                        stats["vel"].append(abs(vel[jf]) / DEG)
+                prev_raw, prev_t = raw, t0
                 tgt = target_from_leader(raw)
                 alpha = min(1.0, (t0 - t_start) / args.ramp)
                 new_goal = {}
@@ -195,16 +231,28 @@ def main():
                     blended = start_pose[j] + alpha * (tgt[j] - start_pose[j])  # soft start
                     step = clamp(blended - goal[j], -args.max_step, args.max_step)
                     new_goal[j] = int(goal[j] + step)
+                t_w0 = time.perf_counter()
                 follower.sync_write("Goal_Position", new_goal, normalize=False)
+                stats["wr"].append((time.perf_counter() - t_w0) * 1e3)
                 goal = new_goal
                 fails = 0
+                if last_cycle is not None:
+                    stats["period"].append((t0 - last_cycle) * 1e3)
+                last_cycle = t0
 
                 if t0 - last_log >= 1.0:
-                    pres = follower.sync_read("Present_Position", normalize=False)
-                    err = max(abs(pres[j] - goal[j]) for j in JOINTS)
+                    jw = max(JOINTS, key=lambda j: abs(pres[j] - goal[j]))
+                    err = abs(pres[jw] - goal[jw])
                     vf = volts(follower)
-                    print(f"[{t0 - t_start:6.1f}s] ramp {alpha*100:3.0f}%  follower {vf:.1f}V  max track err {err:4d} ticks ({err/DEG:4.1f}°)  "
+                    med = lambda k: (sorted(stats[k])[len(stats[k]) // 2] if stats[k] else float("nan"))
+                    mx = lambda k: (max(stats[k]) if stats[k] else float("nan"))
+                    lag_txt = (f"lag~{med('lag'):4.0f}ms (max {mx('lag'):4.0f}) @{med('vel'):3.0f}°/s"
+                               if stats["lag"] else "lag: leader idle")
+                    print(f"[{t0 - t_start:6.1f}s] ramp {alpha*100:3.0f}%  {vf:.1f}V  err {err:3d}t ({err/DEG:4.1f}° {jw[:6]})  "
+                          f"loop {med('period'):5.1f}ms (max {mx('period'):5.1f})  rdL {med('rd_lead'):4.1f}ms  rdF {med('rd_fol'):4.1f}ms  "
+                          f"wr {med('wr'):4.1f}ms  {lag_txt}  | "
                           + " ".join(f"{j[:5]}={goal[j]}" for j in JOINTS), flush=True)
+                    for k in stats: stats[k].clear()
                     last_log = t0
             except ConnectionError as e:
                 fails += 1
@@ -214,9 +262,12 @@ def main():
                     reconnect()
                     continue
 
-            dt = period - (time.time() - t0)
-            if dt > 0:
-                time.sleep(dt)
+            deadline = t0 + period
+            slack = deadline - time.time() - 0.006   # macOS coalesces background timers: sleep overshoots ~4 ms, so spin the tail
+            if slack > 0:
+                time.sleep(slack)
+            while time.time() < deadline:
+                pass
     except KeyboardInterrupt:
         print("\n[teleop] stopping")
     finally:
