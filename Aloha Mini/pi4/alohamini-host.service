@@ -1,0 +1,30 @@
+# systemd unit: start the AlohaMini host at boot so the robot is controllable
+# the moment it powers on (no SSH needed). Install ON THE PI:
+#   sudo cp alohamini-host.service /etc/systemd/system/
+#   sudo systemctl daemon-reload
+#   sudo systemctl enable --now alohamini-host
+#   journalctl -u alohamini-host -f        # watch logs
+# Edit User= / paths if your Pi username is not "pi".
+# NOTE: run the host manually ONCE first so calibration (interactive) is done;
+#       the service cannot answer calibration prompts.
+[Unit]
+Description=AlohaMini host (follower arms, base, lift, cameras)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=pi
+WorkingDirectory=/home/pi/lerobot_alohamini
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/home/pi/miniforge3/envs/lerobot_alohamini/bin/python -m lerobot.robots.alohamini.alohamini_host --robot_model alohamini1
+# The host exits by itself after connection_time_s (6000 s = 100 min) — restart keeps the robot available.
+Restart=always
+RestartSec=3
+# Give the lift time to home + cameras to warm up before systemd considers a slow start failed
+TimeoutStartSec=120
+KillSignal=SIGINT
+TimeoutStopSec=15
+
+[Install]
+WantedBy=multi-user.target
