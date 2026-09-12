@@ -124,37 +124,95 @@ def main():
         leader.disconnect(disable_torque=False); follower.disconnect(disable_torque=False)
         return
 
-    # gentle servo-side limits, then torque on (arm joints only)
-    for j in JOINTS:
-        follower.write("Acceleration", j, args.accel)
-        follower.write("Goal_Velocity", j, args.speed)
-    follower.enable_torque()
+    def arm_follower(bus: FeetechMotorsBus, hold: dict[str, int]) -> None:
+        """Set gentle limits, then enable torque one joint at a time (staggers the 12 V inrush)."""
+        for j in JOINTS:
+            bus.write("Acceleration", j, args.accel)
+            bus.write("Goal_Velocity", j, args.speed)
+            bus.write("Goal_Position", j, hold[j], normalize=False)   # hold where it is
+            bus.enable_torque(j)
+            time.sleep(0.15)
+        # verify the bus survived torque-on
+        for attempt in range(5):
+            try:
+                pres = bus.sync_read("Present_Position", normalize=False)
+                te = [bus.read("Torque_Enable", j, normalize=False) for j in JOINTS]
+                print(f"[teleop] torque-on verified: enable={te}  volts={volts(bus):.1f}", flush=True)
+                return
+            except Exception as e:
+                print(f"[teleop] post-torque check failed ({attempt+1}/5): {e}", flush=True)
+                time.sleep(0.5)
+        raise ConnectionError("follower bus not answering after torque-on")
+
+    arm_follower(follower, goal)
     print(f"\n[teleop] torque ON (follower IDs 1-6). soft start {args.ramp:.0f}s, then live at {args.hz:.0f} Hz. Ctrl-C to stop.\n")
 
     period = 1.0 / args.hz
     t_start = time.time()
     last_log = 0.0
+    fails = 0
+    MAX_FAILS = 10          # consecutive bad cycles before we drop the ports and reconnect
+
+    def reconnect():
+        nonlocal leader, follower, goal, start_pose, t_start, fails
+        print("\n[teleop] bus dropout — closing ports, waiting for the boards to come back ...", flush=True)
+        for b in (leader, follower):
+            try: b.port_handler.closePort()
+            except Exception: pass
+        while True:
+            time.sleep(2.0)
+            try:
+                leader = make_bus(args.leader)
+                follower = make_bus(args.follower)
+                vf = volts(follower)
+                if vf < 9.0:
+                    print(f"[teleop] follower back but only {vf:.1f} V — waiting for 12 V", flush=True)
+                    leader.port_handler.closePort(); follower.port_handler.closePort()
+                    continue
+                leader.disable_torque()
+                goal = follower.sync_read("Present_Position", normalize=False)
+                start_pose = dict(goal)
+                arm_follower(follower, goal)
+                t_start = time.time()      # soft-start again from wherever the follower is now
+                fails = 0
+                print(f"[teleop] reconnected ({vf:.1f} V); soft start {args.ramp:.0f}s", flush=True)
+                return
+            except Exception as e:
+                print(f"[teleop] reconnect attempt failed: {e}", flush=True)
+                for b in (leader, follower):
+                    try: b.port_handler.closePort()
+                    except Exception: pass
+
     try:
         while True:
             t0 = time.time()
-            raw = leader.sync_read("Present_Position", normalize=False)
-            tgt = target_from_leader(raw)
-            alpha = min(1.0, (t0 - t_start) / args.ramp)
-            new_goal = {}
-            for j in JOINTS:
-                blended = start_pose[j] + alpha * (tgt[j] - start_pose[j])  # soft start
-                step = clamp(blended - goal[j], -args.max_step, args.max_step)
-                new_goal[j] = int(goal[j] + step)
-            goal = new_goal
-            follower.sync_write("Goal_Position", goal, normalize=False)
+            try:
+                raw = leader.sync_read("Present_Position", normalize=False)
+                tgt = target_from_leader(raw)
+                alpha = min(1.0, (t0 - t_start) / args.ramp)
+                new_goal = {}
+                for j in JOINTS:
+                    blended = start_pose[j] + alpha * (tgt[j] - start_pose[j])  # soft start
+                    step = clamp(blended - goal[j], -args.max_step, args.max_step)
+                    new_goal[j] = int(goal[j] + step)
+                follower.sync_write("Goal_Position", new_goal, normalize=False)
+                goal = new_goal
+                fails = 0
 
-            if t0 - last_log >= 1.0:
-                pres = follower.sync_read("Present_Position", normalize=False)
-                err = max(abs(pres[j] - goal[j]) for j in JOINTS)
-                vf = volts(follower)
-                print(f"\r[{t0 - t_start:6.1f}s] ramp {alpha*100:3.0f}%  follower {vf:.1f}V  max track err {err:4d} ticks ({err/DEG:4.1f}°)  "
-                      + " ".join(f"{j[:5]}={goal[j]}" for j in JOINTS), end="", flush=True)
-                last_log = t0
+                if t0 - last_log >= 1.0:
+                    pres = follower.sync_read("Present_Position", normalize=False)
+                    err = max(abs(pres[j] - goal[j]) for j in JOINTS)
+                    vf = volts(follower)
+                    print(f"[{t0 - t_start:6.1f}s] ramp {alpha*100:3.0f}%  follower {vf:.1f}V  max track err {err:4d} ticks ({err/DEG:4.1f}°)  "
+                          + " ".join(f"{j[:5]}={goal[j]}" for j in JOINTS), flush=True)
+                    last_log = t0
+            except ConnectionError as e:
+                fails += 1
+                if fails == 1 or fails % 5 == 0:
+                    print(f"[teleop] comm error ({fails}/{MAX_FAILS}): {e}", flush=True)
+                if fails >= MAX_FAILS:
+                    reconnect()
+                    continue
 
             dt = period - (time.time() - t0)
             if dt > 0:
@@ -162,12 +220,19 @@ def main():
     except KeyboardInterrupt:
         print("\n[teleop] stopping")
     finally:
-        try:
-            follower.disable_torque()
-        finally:
-            follower.disconnect(disable_torque=True)
-            leader.disconnect(disable_torque=False)
-        print("[teleop] follower torque OFF, ports closed")
+        for attempt in range(3):
+            try:
+                follower.disable_torque()
+                break
+            except Exception as e:
+                print(f"[teleop] torque-off retry {attempt+1}/3: {e}", flush=True)
+                time.sleep(0.3)
+        for b, dis in ((follower, True), (leader, False)):
+            try: b.disconnect(disable_torque=dis)
+            except Exception:
+                try: b.port_handler.closePort()
+                except Exception: pass
+        print("[teleop] follower torque OFF (best effort), ports closed", flush=True)
 
 
 if __name__ == "__main__":
