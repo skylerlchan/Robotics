@@ -82,8 +82,13 @@ def survey() -> list[dict]:
     return [r for r in (probe(d) for d in devices()) if r]
 
 
-def resolve(cfg: dict, leader: str | None = None, follower: str | None = None) -> tuple[str, str]:
-    """Return (leader_device, follower_device), or exit with a useful message."""
+def resolve(cfg: dict, leader: str | None = None, follower: str | None = None,
+            strict: bool = True) -> tuple[str, str] | tuple[None, None]:
+    """Return (leader_device, follower_device).
+
+    strict=True exits with a useful message if either board is missing. strict=False
+    returns (None, None) instead — for the reconnect loop, which waits and retries.
+    """
     found = {"leader": leader, "follower": follower}
     for role in ("leader", "follower"):
         if found[role]:
@@ -104,11 +109,16 @@ def resolve(cfg: dict, leader: str | None = None, follower: str | None = None) -
                 print(f"[ports] {role} auto-detected: {hits[0]['device']} "
                       f"({hits[0]['volts']:.1f} V, IDs {hits[0]['ids']})", file=sys.stderr)
             elif len(hits) > 1:
-                sys.exit(f"[ports] {len(hits)} boards look like a {role}: "
-                         f"{[h['device'] for h in hits]}. Pass --{role} explicitly.")
+                msg = (f"[ports] {len(hits)} boards look like a {role}: "
+                       f"{[h['device'] for h in hits]}. Pass --{role} explicitly.")
+                if strict:
+                    sys.exit(msg)
+                print(msg, file=sys.stderr)
 
     still = [r for r in ("leader", "follower") if not found[r]]
     if still:
+        if not strict:
+            return None, None
         hint = ("the follower's 12 V supply is off, so both buses read ~5 V and look alike"
                 if "follower" in still else "the board may be unplugged")
         sys.exit(f"[ports] could not find the {', '.join(still)} board — {hint}.\n"

@@ -26,6 +26,7 @@ Safety (unchanged from the proven script):
 from __future__ import annotations
 
 import argparse
+import errno
 import sys
 import time
 from dataclasses import dataclass
@@ -34,6 +35,12 @@ from lerobot.motors import Motor, MotorNormMode
 from lerobot.motors.feetech import FeetechMotorsBus
 
 from ports import DEG, JOINTS, MID, load_config, resolve
+
+# What a dying bus actually throws. serial.SerialException and ConnectionError are
+# siblings under OSError — catching only ConnectionError misses a real USB dropout
+# (Errno 6 "Device not configured"), which is exactly when reconnect is needed.
+# lerobot raises a bare RuntimeError for packet-level errors ("Port is in use!").
+BUS_ERRORS = (OSError, RuntimeError)
 
 
 @dataclass
@@ -234,6 +241,7 @@ def main():
 
     def reconnect():
         nonlocal leader, follower, goal, start_pose, t_start, fails, prev_raw, last_cycle
+        nonlocal lead_port, fol_port
         print("\n[teleop] bus dropout — closing ports, waiting for the boards to come back ...", flush=True)
         for b in (leader, follower):
             try: b.port_handler.closePort()
@@ -241,6 +249,11 @@ def main():
         while True:
             time.sleep(2.0)
             try:
+                # re-resolve: a board that re-enumerates can come back on a new device node
+                lead_port, fol_port = resolve(cfg, args.leader, args.follower, strict=False)
+                if not lead_port:
+                    print("[teleop] boards not back on the USB bus yet — waiting", flush=True)
+                    continue
                 leader = make_bus(lead_port)
                 follower = make_bus(fol_port)
                 vf = volts(follower)
@@ -315,11 +328,16 @@ def main():
                           + " ".join(f"{j[:5]}={goal[j]}" for j in JOINTS), flush=True)
                     for k in stats: stats[k].clear()
                     last_log = t0
-            except ConnectionError as e:
+            except BUS_ERRORS as e:
                 fails += 1
                 if fails == 1 or fails % 5 == 0:
                     print(f"[teleop] comm error ({fails}/{MAX_FAILS}): {e}", flush=True)
-                if fails >= MAX_FAILS:
+                # a vanished device never recovers by retrying the same handle — go
+                # straight to reconnect instead of burning MAX_FAILS cycles on it
+                gone = isinstance(e, OSError) and e.errno == errno.ENXIO
+                if gone or fails >= MAX_FAILS:
+                    if gone:
+                        print("[teleop] device disappeared from the USB bus", flush=True)
                     reconnect()
                     continue
 
@@ -332,9 +350,11 @@ def main():
     except KeyboardInterrupt:
         print("\n[teleop] stopping")
     finally:
+        torque_off = False
         for attempt in range(3):
             try:
                 follower.disable_torque()
+                torque_off = True
                 break
             except Exception as e:
                 print(f"[teleop] torque-off retry {attempt + 1}/3: {e}", flush=True)
@@ -344,7 +364,12 @@ def main():
             except Exception:
                 try: b.port_handler.closePort()
                 except Exception: pass
-        print("[teleop] follower torque OFF (best effort), ports closed", flush=True)
+        if torque_off:
+            print("[teleop] follower torque OFF, ports closed", flush=True)
+        else:
+            print("\n!! COULD NOT DISABLE FOLLOWER TORQUE — the bus was already gone.\n"
+                  "!! The servos are still energised and holding their last goal.\n"
+                  "!! Cut the 12 V supply to release the arm.", flush=True)
 
 
 if __name__ == "__main__":
