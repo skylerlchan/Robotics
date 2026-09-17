@@ -1,0 +1,339 @@
+<mujoco model="fist6"><compiler angle="radian" autolimits="true"/>
+<default><default class="tendril"><joint type="hinge" limited="true" range="-0.663 0.663" damping="0.01" stiffness="4.0" armature="1e-6"/>
+<geom condim="4" contype="1" conaffinity="2" friction="0.9 0.02 0.001" solref="0.004 1" solimp="0.92 0.97 0.001"/><site size="0.0005" rgba="0 0 0 0"/>
+<tendon width="0.0005" rgba="0.85 0.57 0.16 0"/><position kp="60000" kv="120" ctrllimited="true" ctrlrange="0 0.5" forcelimited="true" forcerange="-200.0 0"/></default></default>
+<worldbody><body name="mount" childclass="tendril">
+<geom name="disc" type="cylinder" size="0.07 0.015" pos="0 0 0.015" rgba="0.82 0.80 0.77 1" mass="0.6"/>
+<geom type="cylinder" size="0.068 0.002" pos="0 0 0.031" rgba="0.12 0.62 0.58 1" contype="0" conaffinity="0" mass="0.001"/>
+<site name="t0_b_c0" pos="0.05200 0.00000 0.03"/>
+<site name="t0_b_c1" pos="0.04150 0.00606 0.03"/>
+<site name="t0_b_c2" pos="0.04150 -0.00606 0.03"/>
+<site name="t1_b_c0" pos="0.02950 0.03897 0.03"/>
+<site name="t1_b_c1" pos="0.01900 0.04503 0.03"/>
+<site name="t1_b_c2" pos="0.01900 0.03291 0.03"/>
+<site name="t2_b_c0" pos="-0.01550 0.03897 0.03"/>
+<site name="t2_b_c1" pos="-0.02600 0.04503 0.03"/>
+<site name="t2_b_c2" pos="-0.02600 0.03291 0.03"/>
+<site name="t3_b_c0" pos="-0.03800 0.00000 0.03"/>
+<site name="t3_b_c1" pos="-0.04850 0.00606 0.03"/>
+<site name="t3_b_c2" pos="-0.04850 -0.00606 0.03"/>
+<site name="t4_b_c0" pos="-0.01550 -0.03897 0.03"/>
+<site name="t4_b_c1" pos="-0.02600 -0.03291 0.03"/>
+<site name="t4_b_c2" pos="-0.02600 -0.04503 0.03"/>
+<site name="t5_b_c0" pos="0.02950 -0.03897 0.03"/>
+<site name="t5_b_c1" pos="0.01900 -0.03291 0.03"/>
+<site name="t5_b_c2" pos="0.01900 -0.04503 0.03"/>
+<body name="t0_v0" pos="0.04500 0.00000 0.033">
+<joint name="t0_v0_x" axis="1 0 0"/><joint name="t0_v0_y" axis="0 1 0"/>
+<geom name="t0_g0" type="capsule" size="0.01 0.00400" pos="0 0 0.0075" mass="0.006" rgba="0.93 0.90 0.85 1"/>
+<site name="t0_v0_c0" pos="0.00700 0.00000 0.0075"/>
+<site name="t0_v0_c1" pos="-0.00350 0.00606 0.0075"/>
+<site name="t0_v0_c2" pos="-0.00350 -0.00606 0.0075"/>
+<body name="t0_v1" pos="0 0 0.015">
+<joint name="t0_v1_x" axis="1 0 0"/><joint name="t0_v1_y" axis="0 1 0"/>
+<geom name="t0_g1" type="capsule" size="0.01 0.00400" pos="0 0 0.0075" mass="0.006" rgba="0.93 0.90 0.85 1"/>
+<site name="t0_v1_c0" pos="0.00700 0.00000 0.0075"/>
+<site name="t0_v1_c1" pos="-0.00350 0.00606 0.0075"/>
+<site name="t0_v1_c2" pos="-0.00350 -0.00606 0.0075"/>
+<body name="t0_v2" pos="0 0 0.015">
+<joint name="t0_v2_x" axis="1 0 0"/><joint name="t0_v2_y" axis="0 1 0"/>
+<geom name="t0_g2" type="capsule" size="0.01 0.00400" pos="0 0 0.0075" mass="0.006" rgba="0.93 0.90 0.85 1"/>
+<site name="t0_v2_c0" pos="0.00700 0.00000 0.0075"/>
+<site name="t0_v2_c1" pos="-0.00350 0.00606 0.0075"/>
+<site name="t0_v2_c2" pos="-0.00350 -0.00606 0.0075"/>
+<body name="t0_v3" pos="0 0 0.015">
+<joint name="t0_v3_x" axis="1 0 0"/><joint name="t0_v3_y" axis="0 1 0"/>
+<geom name="t0_g3" type="capsule" size="0.01 0.00400" pos="0 0 0.0075" mass="0.006" rgba="0.93 0.90 0.85 1"/>
+<site name="t0_v3_c0" pos="0.00700 0.00000 0.0075"/>
+<site name="t0_v3_c1" pos="-0.00350 0.00606 0.0075"/>
+<site name="t0_v3_c2" pos="-0.00350 -0.00606 0.0075"/>
+<body name="t0_v4" pos="0 0 0.015">
+<joint name="t0_v4_x" axis="1 0 0"/><joint name="t0_v4_y" axis="0 1 0"/>
+<geom name="t0_g4" type="capsule" size="0.01 0.00400" pos="0 0 0.0075" mass="0.006" rgba="0.93 0.90 0.85 1"/>
+<site name="t0_v4_c0" pos="0.00700 0.00000 0.0075"/>
+<site name="t0_v4_c1" pos="-0.00350 0.00606 0.0075"/>
+<site name="t0_v4_c2" pos="-0.00350 -0.00606 0.0075"/>
+<body name="t0_v5" pos="0 0 0.015">
+<joint name="t0_v5_x" axis="1 0 0"/><joint name="t0_v5_y" axis="0 1 0"/>
+<geom name="t0_g5" type="capsule" size="0.01 0.00400" pos="0 0 0.0075" mass="0.006" rgba="0.93 0.90 0.85 1"/>
+<site name="t0_v5_c0" pos="0.00700 0.00000 0.0075"/>
+<site name="t0_v5_c1" pos="-0.00350 0.00606 0.0075"/>
+<site name="t0_v5_c2" pos="-0.00350 -0.00606 0.0075"/>
+<body name="t0_v6" pos="0 0 0.015">
+<joint name="t0_v6_x" axis="1 0 0"/><joint name="t0_v6_y" axis="0 1 0"/>
+<geom name="t0_g6" type="capsule" size="0.01 0.00400" pos="0 0 0.0075" mass="0.006" rgba="0.93 0.90 0.85 1"/>
+<site name="t0_v6_c0" pos="0.00700 0.00000 0.0075"/>
+<site name="t0_v6_c1" pos="-0.00350 0.00606 0.0075"/>
+<site name="t0_v6_c2" pos="-0.00350 -0.00606 0.0075"/>
+<body name="t0_v7" pos="0 0 0.015">
+<joint name="t0_v7_x" axis="1 0 0"/><joint name="t0_v7_y" axis="0 1 0"/>
+<geom name="t0_g7" type="capsule" size="0.01 0.00400" pos="0 0 0.0075" mass="0.006" rgba="0.55 0.52 0.50 1"/>
+<site name="t0_v7_c0" pos="0.00700 0.00000 0.0075"/>
+<site name="t0_v7_c1" pos="-0.00350 0.00606 0.0075"/>
+<site name="t0_v7_c2" pos="-0.00350 -0.00606 0.0075"/>
+</body></body></body></body></body></body></body></body>
+<body name="t1_v0" pos="0.02250 0.03897 0.033">
+<joint name="t1_v0_x" axis="1 0 0"/><joint name="t1_v0_y" axis="0 1 0"/>
+<geom name="t1_g0" type="capsule" size="0.01 0.00400" pos="0 0 0.0075" mass="0.006" rgba="0.93 0.90 0.85 1"/>
+<site name="t1_v0_c0" pos="0.00700 0.00000 0.0075"/>
+<site name="t1_v0_c1" pos="-0.00350 0.00606 0.0075"/>
+<site name="t1_v0_c2" pos="-0.00350 -0.00606 0.0075"/>
+<body name="t1_v1" pos="0 0 0.015">
+<joint name="t1_v1_x" axis="1 0 0"/><joint name="t1_v1_y" axis="0 1 0"/>
+<geom name="t1_g1" type="capsule" size="0.01 0.00400" pos="0 0 0.0075" mass="0.006" rgba="0.93 0.90 0.85 1"/>
+<site name="t1_v1_c0" pos="0.00700 0.00000 0.0075"/>
+<site name="t1_v1_c1" pos="-0.00350 0.00606 0.0075"/>
+<site name="t1_v1_c2" pos="-0.00350 -0.00606 0.0075"/>
+<body name="t1_v2" pos="0 0 0.015">
+<joint name="t1_v2_x" axis="1 0 0"/><joint name="t1_v2_y" axis="0 1 0"/>
+<geom name="t1_g2" type="capsule" size="0.01 0.00400" pos="0 0 0.0075" mass="0.006" rgba="0.93 0.90 0.85 1"/>
+<site name="t1_v2_c0" pos="0.00700 0.00000 0.0075"/>
+<site name="t1_v2_c1" pos="-0.00350 0.00606 0.0075"/>
+<site name="t1_v2_c2" pos="-0.00350 -0.00606 0.0075"/>
+<body name="t1_v3" pos="0 0 0.015">
+<joint name="t1_v3_x" axis="1 0 0"/><joint name="t1_v3_y" axis="0 1 0"/>
+<geom name="t1_g3" type="capsule" size="0.01 0.00400" pos="0 0 0.0075" mass="0.006" rgba="0.93 0.90 0.85 1"/>
+<site name="t1_v3_c0" pos="0.00700 0.00000 0.0075"/>
+<site name="t1_v3_c1" pos="-0.00350 0.00606 0.0075"/>
+<site name="t1_v3_c2" pos="-0.00350 -0.00606 0.0075"/>
+<body name="t1_v4" pos="0 0 0.015">
+<joint name="t1_v4_x" axis="1 0 0"/><joint name="t1_v4_y" axis="0 1 0"/>
+<geom name="t1_g4" type="capsule" size="0.01 0.00400" pos="0 0 0.0075" mass="0.006" rgba="0.93 0.90 0.85 1"/>
+<site name="t1_v4_c0" pos="0.00700 0.00000 0.0075"/>
+<site name="t1_v4_c1" pos="-0.00350 0.00606 0.0075"/>
+<site name="t1_v4_c2" pos="-0.00350 -0.00606 0.0075"/>
+<body name="t1_v5" pos="0 0 0.015">
+<joint name="t1_v5_x" axis="1 0 0"/><joint name="t1_v5_y" axis="0 1 0"/>
+<geom name="t1_g5" type="capsule" size="0.01 0.00400" pos="0 0 0.0075" mass="0.006" rgba="0.93 0.90 0.85 1"/>
+<site name="t1_v5_c0" pos="0.00700 0.00000 0.0075"/>
+<site name="t1_v5_c1" pos="-0.00350 0.00606 0.0075"/>
+<site name="t1_v5_c2" pos="-0.00350 -0.00606 0.0075"/>
+<body name="t1_v6" pos="0 0 0.015">
+<joint name="t1_v6_x" axis="1 0 0"/><joint name="t1_v6_y" axis="0 1 0"/>
+<geom name="t1_g6" type="capsule" size="0.01 0.00400" pos="0 0 0.0075" mass="0.006" rgba="0.93 0.90 0.85 1"/>
+<site name="t1_v6_c0" pos="0.00700 0.00000 0.0075"/>
+<site name="t1_v6_c1" pos="-0.00350 0.00606 0.0075"/>
+<site name="t1_v6_c2" pos="-0.00350 -0.00606 0.0075"/>
+<body name="t1_v7" pos="0 0 0.015">
+<joint name="t1_v7_x" axis="1 0 0"/><joint name="t1_v7_y" axis="0 1 0"/>
+<geom name="t1_g7" type="capsule" size="0.01 0.00400" pos="0 0 0.0075" mass="0.006" rgba="0.55 0.52 0.50 1"/>
+<site name="t1_v7_c0" pos="0.00700 0.00000 0.0075"/>
+<site name="t1_v7_c1" pos="-0.00350 0.00606 0.0075"/>
+<site name="t1_v7_c2" pos="-0.00350 -0.00606 0.0075"/>
+</body></body></body></body></body></body></body></body>
+<body name="t2_v0" pos="-0.02250 0.03897 0.033">
+<joint name="t2_v0_x" axis="1 0 0"/><joint name="t2_v0_y" axis="0 1 0"/>
+<geom name="t2_g0" type="capsule" size="0.01 0.00400" pos="0 0 0.0075" mass="0.006" rgba="0.93 0.90 0.85 1"/>
+<site name="t2_v0_c0" pos="0.00700 0.00000 0.0075"/>
+<site name="t2_v0_c1" pos="-0.00350 0.00606 0.0075"/>
+<site name="t2_v0_c2" pos="-0.00350 -0.00606 0.0075"/>
+<body name="t2_v1" pos="0 0 0.015">
+<joint name="t2_v1_x" axis="1 0 0"/><joint name="t2_v1_y" axis="0 1 0"/>
+<geom name="t2_g1" type="capsule" size="0.01 0.00400" pos="0 0 0.0075" mass="0.006" rgba="0.93 0.90 0.85 1"/>
+<site name="t2_v1_c0" pos="0.00700 0.00000 0.0075"/>
+<site name="t2_v1_c1" pos="-0.00350 0.00606 0.0075"/>
+<site name="t2_v1_c2" pos="-0.00350 -0.00606 0.0075"/>
+<body name="t2_v2" pos="0 0 0.015">
+<joint name="t2_v2_x" axis="1 0 0"/><joint name="t2_v2_y" axis="0 1 0"/>
+<geom name="t2_g2" type="capsule" size="0.01 0.00400" pos="0 0 0.0075" mass="0.006" rgba="0.93 0.90 0.85 1"/>
+<site name="t2_v2_c0" pos="0.00700 0.00000 0.0075"/>
+<site name="t2_v2_c1" pos="-0.00350 0.00606 0.0075"/>
+<site name="t2_v2_c2" pos="-0.00350 -0.00606 0.0075"/>
+<body name="t2_v3" pos="0 0 0.015">
+<joint name="t2_v3_x" axis="1 0 0"/><joint name="t2_v3_y" axis="0 1 0"/>
+<geom name="t2_g3" type="capsule" size="0.01 0.00400" pos="0 0 0.0075" mass="0.006" rgba="0.93 0.90 0.85 1"/>
+<site name="t2_v3_c0" pos="0.00700 0.00000 0.0075"/>
+<site name="t2_v3_c1" pos="-0.00350 0.00606 0.0075"/>
+<site name="t2_v3_c2" pos="-0.00350 -0.00606 0.0075"/>
+<body name="t2_v4" pos="0 0 0.015">
+<joint name="t2_v4_x" axis="1 0 0"/><joint name="t2_v4_y" axis="0 1 0"/>
+<geom name="t2_g4" type="capsule" size="0.01 0.00400" pos="0 0 0.0075" mass="0.006" rgba="0.93 0.90 0.85 1"/>
+<site name="t2_v4_c0" pos="0.00700 0.00000 0.0075"/>
+<site name="t2_v4_c1" pos="-0.00350 0.00606 0.0075"/>
+<site name="t2_v4_c2" pos="-0.00350 -0.00606 0.0075"/>
+<body name="t2_v5" pos="0 0 0.015">
+<joint name="t2_v5_x" axis="1 0 0"/><joint name="t2_v5_y" axis="0 1 0"/>
+<geom name="t2_g5" type="capsule" size="0.01 0.00400" pos="0 0 0.0075" mass="0.006" rgba="0.93 0.90 0.85 1"/>
+<site name="t2_v5_c0" pos="0.00700 0.00000 0.0075"/>
+<site name="t2_v5_c1" pos="-0.00350 0.00606 0.0075"/>
+<site name="t2_v5_c2" pos="-0.00350 -0.00606 0.0075"/>
+<body name="t2_v6" pos="0 0 0.015">
+<joint name="t2_v6_x" axis="1 0 0"/><joint name="t2_v6_y" axis="0 1 0"/>
+<geom name="t2_g6" type="capsule" size="0.01 0.00400" pos="0 0 0.0075" mass="0.006" rgba="0.93 0.90 0.85 1"/>
+<site name="t2_v6_c0" pos="0.00700 0.00000 0.0075"/>
+<site name="t2_v6_c1" pos="-0.00350 0.00606 0.0075"/>
+<site name="t2_v6_c2" pos="-0.00350 -0.00606 0.0075"/>
+<body name="t2_v7" pos="0 0 0.015">
+<joint name="t2_v7_x" axis="1 0 0"/><joint name="t2_v7_y" axis="0 1 0"/>
+<geom name="t2_g7" type="capsule" size="0.01 0.00400" pos="0 0 0.0075" mass="0.006" rgba="0.55 0.52 0.50 1"/>
+<site name="t2_v7_c0" pos="0.00700 0.00000 0.0075"/>
+<site name="t2_v7_c1" pos="-0.00350 0.00606 0.0075"/>
+<site name="t2_v7_c2" pos="-0.00350 -0.00606 0.0075"/>
+</body></body></body></body></body></body></body></body>
+<body name="t3_v0" pos="-0.04500 0.00000 0.033">
+<joint name="t3_v0_x" axis="1 0 0"/><joint name="t3_v0_y" axis="0 1 0"/>
+<geom name="t3_g0" type="capsule" size="0.01 0.00400" pos="0 0 0.0075" mass="0.006" rgba="0.93 0.90 0.85 1"/>
+<site name="t3_v0_c0" pos="0.00700 0.00000 0.0075"/>
+<site name="t3_v0_c1" pos="-0.00350 0.00606 0.0075"/>
+<site name="t3_v0_c2" pos="-0.00350 -0.00606 0.0075"/>
+<body name="t3_v1" pos="0 0 0.015">
+<joint name="t3_v1_x" axis="1 0 0"/><joint name="t3_v1_y" axis="0 1 0"/>
+<geom name="t3_g1" type="capsule" size="0.01 0.00400" pos="0 0 0.0075" mass="0.006" rgba="0.93 0.90 0.85 1"/>
+<site name="t3_v1_c0" pos="0.00700 0.00000 0.0075"/>
+<site name="t3_v1_c1" pos="-0.00350 0.00606 0.0075"/>
+<site name="t3_v1_c2" pos="-0.00350 -0.00606 0.0075"/>
+<body name="t3_v2" pos="0 0 0.015">
+<joint name="t3_v2_x" axis="1 0 0"/><joint name="t3_v2_y" axis="0 1 0"/>
+<geom name="t3_g2" type="capsule" size="0.01 0.00400" pos="0 0 0.0075" mass="0.006" rgba="0.93 0.90 0.85 1"/>
+<site name="t3_v2_c0" pos="0.00700 0.00000 0.0075"/>
+<site name="t3_v2_c1" pos="-0.00350 0.00606 0.0075"/>
+<site name="t3_v2_c2" pos="-0.00350 -0.00606 0.0075"/>
+<body name="t3_v3" pos="0 0 0.015">
+<joint name="t3_v3_x" axis="1 0 0"/><joint name="t3_v3_y" axis="0 1 0"/>
+<geom name="t3_g3" type="capsule" size="0.01 0.00400" pos="0 0 0.0075" mass="0.006" rgba="0.93 0.90 0.85 1"/>
+<site name="t3_v3_c0" pos="0.00700 0.00000 0.0075"/>
+<site name="t3_v3_c1" pos="-0.00350 0.00606 0.0075"/>
+<site name="t3_v3_c2" pos="-0.00350 -0.00606 0.0075"/>
+<body name="t3_v4" pos="0 0 0.015">
+<joint name="t3_v4_x" axis="1 0 0"/><joint name="t3_v4_y" axis="0 1 0"/>
+<geom name="t3_g4" type="capsule" size="0.01 0.00400" pos="0 0 0.0075" mass="0.006" rgba="0.93 0.90 0.85 1"/>
+<site name="t3_v4_c0" pos="0.00700 0.00000 0.0075"/>
+<site name="t3_v4_c1" pos="-0.00350 0.00606 0.0075"/>
+<site name="t3_v4_c2" pos="-0.00350 -0.00606 0.0075"/>
+<body name="t3_v5" pos="0 0 0.015">
+<joint name="t3_v5_x" axis="1 0 0"/><joint name="t3_v5_y" axis="0 1 0"/>
+<geom name="t3_g5" type="capsule" size="0.01 0.00400" pos="0 0 0.0075" mass="0.006" rgba="0.93 0.90 0.85 1"/>
+<site name="t3_v5_c0" pos="0.00700 0.00000 0.0075"/>
+<site name="t3_v5_c1" pos="-0.00350 0.00606 0.0075"/>
+<site name="t3_v5_c2" pos="-0.00350 -0.00606 0.0075"/>
+<body name="t3_v6" pos="0 0 0.015">
+<joint name="t3_v6_x" axis="1 0 0"/><joint name="t3_v6_y" axis="0 1 0"/>
+<geom name="t3_g6" type="capsule" size="0.01 0.00400" pos="0 0 0.0075" mass="0.006" rgba="0.93 0.90 0.85 1"/>
+<site name="t3_v6_c0" pos="0.00700 0.00000 0.0075"/>
+<site name="t3_v6_c1" pos="-0.00350 0.00606 0.0075"/>
+<site name="t3_v6_c2" pos="-0.00350 -0.00606 0.0075"/>
+<body name="t3_v7" pos="0 0 0.015">
+<joint name="t3_v7_x" axis="1 0 0"/><joint name="t3_v7_y" axis="0 1 0"/>
+<geom name="t3_g7" type="capsule" size="0.01 0.00400" pos="0 0 0.0075" mass="0.006" rgba="0.55 0.52 0.50 1"/>
+<site name="t3_v7_c0" pos="0.00700 0.00000 0.0075"/>
+<site name="t3_v7_c1" pos="-0.00350 0.00606 0.0075"/>
+<site name="t3_v7_c2" pos="-0.00350 -0.00606 0.0075"/>
+</body></body></body></body></body></body></body></body>
+<body name="t4_v0" pos="-0.02250 -0.03897 0.033">
+<joint name="t4_v0_x" axis="1 0 0"/><joint name="t4_v0_y" axis="0 1 0"/>
+<geom name="t4_g0" type="capsule" size="0.01 0.00400" pos="0 0 0.0075" mass="0.006" rgba="0.93 0.90 0.85 1"/>
+<site name="t4_v0_c0" pos="0.00700 0.00000 0.0075"/>
+<site name="t4_v0_c1" pos="-0.00350 0.00606 0.0075"/>
+<site name="t4_v0_c2" pos="-0.00350 -0.00606 0.0075"/>
+<body name="t4_v1" pos="0 0 0.015">
+<joint name="t4_v1_x" axis="1 0 0"/><joint name="t4_v1_y" axis="0 1 0"/>
+<geom name="t4_g1" type="capsule" size="0.01 0.00400" pos="0 0 0.0075" mass="0.006" rgba="0.93 0.90 0.85 1"/>
+<site name="t4_v1_c0" pos="0.00700 0.00000 0.0075"/>
+<site name="t4_v1_c1" pos="-0.00350 0.00606 0.0075"/>
+<site name="t4_v1_c2" pos="-0.00350 -0.00606 0.0075"/>
+<body name="t4_v2" pos="0 0 0.015">
+<joint name="t4_v2_x" axis="1 0 0"/><joint name="t4_v2_y" axis="0 1 0"/>
+<geom name="t4_g2" type="capsule" size="0.01 0.00400" pos="0 0 0.0075" mass="0.006" rgba="0.93 0.90 0.85 1"/>
+<site name="t4_v2_c0" pos="0.00700 0.00000 0.0075"/>
+<site name="t4_v2_c1" pos="-0.00350 0.00606 0.0075"/>
+<site name="t4_v2_c2" pos="-0.00350 -0.00606 0.0075"/>
+<body name="t4_v3" pos="0 0 0.015">
+<joint name="t4_v3_x" axis="1 0 0"/><joint name="t4_v3_y" axis="0 1 0"/>
+<geom name="t4_g3" type="capsule" size="0.01 0.00400" pos="0 0 0.0075" mass="0.006" rgba="0.93 0.90 0.85 1"/>
+<site name="t4_v3_c0" pos="0.00700 0.00000 0.0075"/>
+<site name="t4_v3_c1" pos="-0.00350 0.00606 0.0075"/>
+<site name="t4_v3_c2" pos="-0.00350 -0.00606 0.0075"/>
+<body name="t4_v4" pos="0 0 0.015">
+<joint name="t4_v4_x" axis="1 0 0"/><joint name="t4_v4_y" axis="0 1 0"/>
+<geom name="t4_g4" type="capsule" size="0.01 0.00400" pos="0 0 0.0075" mass="0.006" rgba="0.93 0.90 0.85 1"/>
+<site name="t4_v4_c0" pos="0.00700 0.00000 0.0075"/>
+<site name="t4_v4_c1" pos="-0.00350 0.00606 0.0075"/>
+<site name="t4_v4_c2" pos="-0.00350 -0.00606 0.0075"/>
+<body name="t4_v5" pos="0 0 0.015">
+<joint name="t4_v5_x" axis="1 0 0"/><joint name="t4_v5_y" axis="0 1 0"/>
+<geom name="t4_g5" type="capsule" size="0.01 0.00400" pos="0 0 0.0075" mass="0.006" rgba="0.93 0.90 0.85 1"/>
+<site name="t4_v5_c0" pos="0.00700 0.00000 0.0075"/>
+<site name="t4_v5_c1" pos="-0.00350 0.00606 0.0075"/>
+<site name="t4_v5_c2" pos="-0.00350 -0.00606 0.0075"/>
+<body name="t4_v6" pos="0 0 0.015">
+<joint name="t4_v6_x" axis="1 0 0"/><joint name="t4_v6_y" axis="0 1 0"/>
+<geom name="t4_g6" type="capsule" size="0.01 0.00400" pos="0 0 0.0075" mass="0.006" rgba="0.93 0.90 0.85 1"/>
+<site name="t4_v6_c0" pos="0.00700 0.00000 0.0075"/>
+<site name="t4_v6_c1" pos="-0.00350 0.00606 0.0075"/>
+<site name="t4_v6_c2" pos="-0.00350 -0.00606 0.0075"/>
+<body name="t4_v7" pos="0 0 0.015">
+<joint name="t4_v7_x" axis="1 0 0"/><joint name="t4_v7_y" axis="0 1 0"/>
+<geom name="t4_g7" type="capsule" size="0.01 0.00400" pos="0 0 0.0075" mass="0.006" rgba="0.55 0.52 0.50 1"/>
+<site name="t4_v7_c0" pos="0.00700 0.00000 0.0075"/>
+<site name="t4_v7_c1" pos="-0.00350 0.00606 0.0075"/>
+<site name="t4_v7_c2" pos="-0.00350 -0.00606 0.0075"/>
+</body></body></body></body></body></body></body></body>
+<body name="t5_v0" pos="0.02250 -0.03897 0.033">
+<joint name="t5_v0_x" axis="1 0 0"/><joint name="t5_v0_y" axis="0 1 0"/>
+<geom name="t5_g0" type="capsule" size="0.01 0.00400" pos="0 0 0.0075" mass="0.006" rgba="0.93 0.90 0.85 1"/>
+<site name="t5_v0_c0" pos="0.00700 0.00000 0.0075"/>
+<site name="t5_v0_c1" pos="-0.00350 0.00606 0.0075"/>
+<site name="t5_v0_c2" pos="-0.00350 -0.00606 0.0075"/>
+<body name="t5_v1" pos="0 0 0.015">
+<joint name="t5_v1_x" axis="1 0 0"/><joint name="t5_v1_y" axis="0 1 0"/>
+<geom name="t5_g1" type="capsule" size="0.01 0.00400" pos="0 0 0.0075" mass="0.006" rgba="0.93 0.90 0.85 1"/>
+<site name="t5_v1_c0" pos="0.00700 0.00000 0.0075"/>
+<site name="t5_v1_c1" pos="-0.00350 0.00606 0.0075"/>
+<site name="t5_v1_c2" pos="-0.00350 -0.00606 0.0075"/>
+<body name="t5_v2" pos="0 0 0.015">
+<joint name="t5_v2_x" axis="1 0 0"/><joint name="t5_v2_y" axis="0 1 0"/>
+<geom name="t5_g2" type="capsule" size="0.01 0.00400" pos="0 0 0.0075" mass="0.006" rgba="0.93 0.90 0.85 1"/>
+<site name="t5_v2_c0" pos="0.00700 0.00000 0.0075"/>
+<site name="t5_v2_c1" pos="-0.00350 0.00606 0.0075"/>
+<site name="t5_v2_c2" pos="-0.00350 -0.00606 0.0075"/>
+<body name="t5_v3" pos="0 0 0.015">
+<joint name="t5_v3_x" axis="1 0 0"/><joint name="t5_v3_y" axis="0 1 0"/>
+<geom name="t5_g3" type="capsule" size="0.01 0.00400" pos="0 0 0.0075" mass="0.006" rgba="0.93 0.90 0.85 1"/>
+<site name="t5_v3_c0" pos="0.00700 0.00000 0.0075"/>
+<site name="t5_v3_c1" pos="-0.00350 0.00606 0.0075"/>
+<site name="t5_v3_c2" pos="-0.00350 -0.00606 0.0075"/>
+<body name="t5_v4" pos="0 0 0.015">
+<joint name="t5_v4_x" axis="1 0 0"/><joint name="t5_v4_y" axis="0 1 0"/>
+<geom name="t5_g4" type="capsule" size="0.01 0.00400" pos="0 0 0.0075" mass="0.006" rgba="0.93 0.90 0.85 1"/>
+<site name="t5_v4_c0" pos="0.00700 0.00000 0.0075"/>
+<site name="t5_v4_c1" pos="-0.00350 0.00606 0.0075"/>
+<site name="t5_v4_c2" pos="-0.00350 -0.00606 0.0075"/>
+<body name="t5_v5" pos="0 0 0.015">
+<joint name="t5_v5_x" axis="1 0 0"/><joint name="t5_v5_y" axis="0 1 0"/>
+<geom name="t5_g5" type="capsule" size="0.01 0.00400" pos="0 0 0.0075" mass="0.006" rgba="0.93 0.90 0.85 1"/>
+<site name="t5_v5_c0" pos="0.00700 0.00000 0.0075"/>
+<site name="t5_v5_c1" pos="-0.00350 0.00606 0.0075"/>
+<site name="t5_v5_c2" pos="-0.00350 -0.00606 0.0075"/>
+<body name="t5_v6" pos="0 0 0.015">
+<joint name="t5_v6_x" axis="1 0 0"/><joint name="t5_v6_y" axis="0 1 0"/>
+<geom name="t5_g6" type="capsule" size="0.01 0.00400" pos="0 0 0.0075" mass="0.006" rgba="0.93 0.90 0.85 1"/>
+<site name="t5_v6_c0" pos="0.00700 0.00000 0.0075"/>
+<site name="t5_v6_c1" pos="-0.00350 0.00606 0.0075"/>
+<site name="t5_v6_c2" pos="-0.00350 -0.00606 0.0075"/>
+<body name="t5_v7" pos="0 0 0.015">
+<joint name="t5_v7_x" axis="1 0 0"/><joint name="t5_v7_y" axis="0 1 0"/>
+<geom name="t5_g7" type="capsule" size="0.01 0.00400" pos="0 0 0.0075" mass="0.006" rgba="0.55 0.52 0.50 1"/>
+<site name="t5_v7_c0" pos="0.00700 0.00000 0.0075"/>
+<site name="t5_v7_c1" pos="-0.00350 0.00606 0.0075"/>
+<site name="t5_v7_c2" pos="-0.00350 -0.00606 0.0075"/>
+</body></body></body></body></body></body></body></body>
+</body></worldbody><tendon>
+<spatial name="t0_c0" class="tendril"><site site="t0_b_c0"/><site site="t0_v0_c0"/><site site="t0_v1_c0"/><site site="t0_v2_c0"/><site site="t0_v3_c0"/><site site="t0_v4_c0"/><site site="t0_v5_c0"/><site site="t0_v6_c0"/><site site="t0_v7_c0"/></spatial>
+<spatial name="t0_c1" class="tendril"><site site="t0_b_c1"/><site site="t0_v0_c1"/><site site="t0_v1_c1"/><site site="t0_v2_c1"/><site site="t0_v3_c1"/><site site="t0_v4_c1"/><site site="t0_v5_c1"/><site site="t0_v6_c1"/><site site="t0_v7_c1"/></spatial>
+<spatial name="t0_c2" class="tendril"><site site="t0_b_c2"/><site site="t0_v0_c2"/><site site="t0_v1_c2"/><site site="t0_v2_c2"/><site site="t0_v3_c2"/><site site="t0_v4_c2"/><site site="t0_v5_c2"/><site site="t0_v6_c2"/><site site="t0_v7_c2"/></spatial>
+<spatial name="t1_c0" class="tendril"><site site="t1_b_c0"/><site site="t1_v0_c0"/><site site="t1_v1_c0"/><site site="t1_v2_c0"/><site site="t1_v3_c0"/><site site="t1_v4_c0"/><site site="t1_v5_c0"/><site site="t1_v6_c0"/><site site="t1_v7_c0"/></spatial>
+<spatial name="t1_c1" class="tendril"><site site="t1_b_c1"/><site site="t1_v0_c1"/><site site="t1_v1_c1"/><site site="t1_v2_c1"/><site site="t1_v3_c1"/><site site="t1_v4_c1"/><site site="t1_v5_c1"/><site site="t1_v6_c1"/><site site="t1_v7_c1"/></spatial>
+<spatial name="t1_c2" class="tendril"><site site="t1_b_c2"/><site site="t1_v0_c2"/><site site="t1_v1_c2"/><site site="t1_v2_c2"/><site site="t1_v3_c2"/><site site="t1_v4_c2"/><site site="t1_v5_c2"/><site site="t1_v6_c2"/><site site="t1_v7_c2"/></spatial>
+<spatial name="t2_c0" class="tendril"><site site="t2_b_c0"/><site site="t2_v0_c0"/><site site="t2_v1_c0"/><site site="t2_v2_c0"/><site site="t2_v3_c0"/><site site="t2_v4_c0"/><site site="t2_v5_c0"/><site site="t2_v6_c0"/><site site="t2_v7_c0"/></spatial>
+<spatial name="t2_c1" class="tendril"><site site="t2_b_c1"/><site site="t2_v0_c1"/><site site="t2_v1_c1"/><site site="t2_v2_c1"/><site site="t2_v3_c1"/><site site="t2_v4_c1"/><site site="t2_v5_c1"/><site site="t2_v6_c1"/><site site="t2_v7_c1"/></spatial>
+<spatial name="t2_c2" class="tendril"><site site="t2_b_c2"/><site site="t2_v0_c2"/><site site="t2_v1_c2"/><site site="t2_v2_c2"/><site site="t2_v3_c2"/><site site="t2_v4_c2"/><site site="t2_v5_c2"/><site site="t2_v6_c2"/><site site="t2_v7_c2"/></spatial>
+<spatial name="t3_c0" class="tendril"><site site="t3_b_c0"/><site site="t3_v0_c0"/><site site="t3_v1_c0"/><site site="t3_v2_c0"/><site site="t3_v3_c0"/><site site="t3_v4_c0"/><site site="t3_v5_c0"/><site site="t3_v6_c0"/><site site="t3_v7_c0"/></spatial>
+<spatial name="t3_c1" class="tendril"><site site="t3_b_c1"/><site site="t3_v0_c1"/><site site="t3_v1_c1"/><site site="t3_v2_c1"/><site site="t3_v3_c1"/><site site="t3_v4_c1"/><site site="t3_v5_c1"/><site site="t3_v6_c1"/><site site="t3_v7_c1"/></spatial>
+<spatial name="t3_c2" class="tendril"><site site="t3_b_c2"/><site site="t3_v0_c2"/><site site="t3_v1_c2"/><site site="t3_v2_c2"/><site site="t3_v3_c2"/><site site="t3_v4_c2"/><site site="t3_v5_c2"/><site site="t3_v6_c2"/><site site="t3_v7_c2"/></spatial>
+<spatial name="t4_c0" class="tendril"><site site="t4_b_c0"/><site site="t4_v0_c0"/><site site="t4_v1_c0"/><site site="t4_v2_c0"/><site site="t4_v3_c0"/><site site="t4_v4_c0"/><site site="t4_v5_c0"/><site site="t4_v6_c0"/><site site="t4_v7_c0"/></spatial>
+<spatial name="t4_c1" class="tendril"><site site="t4_b_c1"/><site site="t4_v0_c1"/><site site="t4_v1_c1"/><site site="t4_v2_c1"/><site site="t4_v3_c1"/><site site="t4_v4_c1"/><site site="t4_v5_c1"/><site site="t4_v6_c1"/><site site="t4_v7_c1"/></spatial>
+<spatial name="t4_c2" class="tendril"><site site="t4_b_c2"/><site site="t4_v0_c2"/><site site="t4_v1_c2"/><site site="t4_v2_c2"/><site site="t4_v3_c2"/><site site="t4_v4_c2"/><site site="t4_v5_c2"/><site site="t4_v6_c2"/><site site="t4_v7_c2"/></spatial>
+<spatial name="t5_c0" class="tendril"><site site="t5_b_c0"/><site site="t5_v0_c0"/><site site="t5_v1_c0"/><site site="t5_v2_c0"/><site site="t5_v3_c0"/><site site="t5_v4_c0"/><site site="t5_v5_c0"/><site site="t5_v6_c0"/><site site="t5_v7_c0"/></spatial>
+<spatial name="t5_c1" class="tendril"><site site="t5_b_c1"/><site site="t5_v0_c1"/><site site="t5_v1_c1"/><site site="t5_v2_c1"/><site site="t5_v3_c1"/><site site="t5_v4_c1"/><site site="t5_v5_c1"/><site site="t5_v6_c1"/><site site="t5_v7_c1"/></spatial>
+<spatial name="t5_c2" class="tendril"><site site="t5_b_c2"/><site site="t5_v0_c2"/><site site="t5_v1_c2"/><site site="t5_v2_c2"/><site site="t5_v3_c2"/><site site="t5_v4_c2"/><site site="t5_v5_c2"/><site site="t5_v6_c2"/><site site="t5_v7_c2"/></spatial>
+</tendon><actuator><position name="t0_c0" class="tendril" tendon="t0_c0"/><position name="t0_c1" class="tendril" tendon="t0_c1"/><position name="t0_c2" class="tendril" tendon="t0_c2"/><position name="t1_c0" class="tendril" tendon="t1_c0"/><position name="t1_c1" class="tendril" tendon="t1_c1"/><position name="t1_c2" class="tendril" tendon="t1_c2"/><position name="t2_c0" class="tendril" tendon="t2_c0"/><position name="t2_c1" class="tendril" tendon="t2_c1"/><position name="t2_c2" class="tendril" tendon="t2_c2"/><position name="t3_c0" class="tendril" tendon="t3_c0"/><position name="t3_c1" class="tendril" tendon="t3_c1"/><position name="t3_c2" class="tendril" tendon="t3_c2"/><position name="t4_c0" class="tendril" tendon="t4_c0"/><position name="t4_c1" class="tendril" tendon="t4_c1"/><position name="t4_c2" class="tendril" tendon="t4_c2"/><position name="t5_c0" class="tendril" tendon="t5_c0"/><position name="t5_c1" class="tendril" tendon="t5_c1"/><position name="t5_c2" class="tendril" tendon="t5_c2"/></actuator></mujoco>

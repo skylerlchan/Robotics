@@ -1,0 +1,4277 @@
+{
+ "sources": {
+  "B1K": [
+   "BEHAVIOR-1K survey, 1,461 respondents ranking 2,090 activities",
+   "https://arxiv.org/abs/2403.09227"
+  ],
+  "RC365": [
+   "RoboCasa365, ten foundational skills, 65 atomic and 365 tasks",
+   "https://arxiv.org/abs/2603.04356"
+  ],
+  "OXE": [
+   "Open X-Embodiment, 22 robots, 527 skills; pick-place, push, open, close dominate",
+   "https://arxiv.org/abs/2310.08864"
+  ],
+  "SHAP": [
+   "Southampton Hand Assessment Procedure, 26 timed tasks",
+   "https://shap.ecs.soton.ac.uk/about.php"
+  ],
+  "JT": [
+   "Jebsen-Taylor Hand Function Test, 7 subtests",
+   "https://oml.eular.org"
+  ],
+  "ARAT": [
+   "Action Research Arm Test, 19 items",
+   "https://www.physio-pedia.com"
+  ],
+  "ADL": [
+   "Mitzner et al. 2013, older adults' openness to robot help with daily living tasks",
+   "https://pmc.ncbi.nlm.nih.gov"
+  ],
+  "YOO": [
+   "Yoo et al. 2024, preferences and expectations for home robot tasks",
+   "https://pubmed.ncbi.nlm.nih.gov"
+  ],
+  "IND": [
+   "Automate.org and RoboDK industrial pick-and-place task lists",
+   "https://www.automate.org"
+  ],
+  "HUM": [
+   "Tasks shown or promised by 1X NEO, Tesla Optimus and Figure",
+   "https://www.1x.tech/discover/neo-home-robot"
+  ],
+  "RLB": [
+   "RLBench, 100 tabletop tasks",
+   "https://sites.google.com/view/rlbench"
+  ],
+  "LIB": [
+   "LIBERO, 130 language-conditioned tasks",
+   "https://libero-project.github.io"
+  ]
+ },
+ "tasks": [
+  {
+   "id": 1,
+   "domain": "Kitchen",
+   "task": "Load the dishwasher with plates and cups",
+   "skills": [
+    "pick-place",
+    "insertion",
+    "open door"
+   ],
+   "objects": "plates, cups, rack",
+   "needs": [
+    "rigid"
+   ],
+   "sources": [
+    "B1K",
+    "RC365"
+   ],
+   "demo": "",
+   "status": "ready",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 2,
+   "domain": "Kitchen",
+   "task": "Unload the dishwasher and put dishes in cabinets",
+   "skills": [
+    "pick-place",
+    "open door",
+    "mobile"
+   ],
+   "objects": "plates, cabinet",
+   "needs": [
+    "rigid",
+    "mobile"
+   ],
+   "sources": [
+    "B1K",
+    "RC365"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "mobile base"
+  },
+  {
+   "id": 3,
+   "domain": "Kitchen",
+   "task": "Wash dishes by hand",
+   "skills": [
+    "tools",
+    "fluid"
+   ],
+   "objects": "sponge, sink, dishes",
+   "needs": [
+    "fluid",
+    "tools"
+   ],
+   "sources": [
+    "B1K"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "fluids"
+  },
+  {
+   "id": 4,
+   "domain": "Kitchen",
+   "task": "Wipe the counter with a cloth",
+   "skills": [
+    "tools"
+   ],
+   "objects": "cloth, counter",
+   "needs": [
+    "deform",
+    "tools"
+   ],
+   "sources": [
+    "B1K",
+    "HUM"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "deformables"
+  },
+  {
+   "id": 5,
+   "domain": "Kitchen",
+   "task": "Clear the table after a meal",
+   "skills": [
+    "pick-place",
+    "mobile"
+   ],
+   "objects": "plates, cutlery",
+   "needs": [
+    "rigid",
+    "mobile"
+   ],
+   "sources": [
+    "B1K",
+    "HUM"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "mobile base"
+  },
+  {
+   "id": 6,
+   "domain": "Kitchen",
+   "task": "Set the table",
+   "skills": [
+    "pick-place",
+    "mobile"
+   ],
+   "objects": "plates, glasses, cutlery",
+   "needs": [
+    "rigid",
+    "mobile"
+   ],
+   "sources": [
+    "B1K"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "mobile base"
+  },
+  {
+   "id": 7,
+   "domain": "Kitchen",
+   "task": "Pour a glass of water from a jug",
+   "skills": [
+    "pour"
+   ],
+   "objects": "jug, glass",
+   "needs": [
+    "fluid"
+   ],
+   "sources": [
+    "SHAP",
+    "RC365"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "fluids"
+  },
+  {
+   "id": 8,
+   "domain": "Kitchen",
+   "task": "Pour milk from a carton",
+   "skills": [
+    "pour"
+   ],
+   "objects": "carton, bowl",
+   "needs": [
+    "fluid",
+    "deform"
+   ],
+   "sources": [
+    "SHAP"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "deformables"
+  },
+  {
+   "id": 9,
+   "domain": "Kitchen",
+   "task": "Make coffee with a pod machine",
+   "skills": [
+    "press button",
+    "insertion",
+    "open lid"
+   ],
+   "objects": "machine, pod, cup",
+   "needs": [
+    "rigid",
+    "fluid"
+   ],
+   "sources": [
+    "RC365"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "fluids"
+  },
+  {
+   "id": 10,
+   "domain": "Kitchen",
+   "task": "Fill and switch on a kettle",
+   "skills": [
+    "fluid",
+    "press"
+   ],
+   "objects": "kettle, tap",
+   "needs": [
+    "fluid"
+   ],
+   "sources": [
+    "RC365"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "fluids"
+  },
+  {
+   "id": 11,
+   "domain": "Kitchen",
+   "task": "Open the fridge and take out a bottle",
+   "skills": [
+    "open door",
+    "pick-place"
+   ],
+   "objects": "fridge, bottle",
+   "needs": [
+    "rigid"
+   ],
+   "sources": [
+    "RC365",
+    "OXE"
+   ],
+   "demo": "bottle",
+   "status": "demo",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 12,
+   "domain": "Kitchen",
+   "task": "Put groceries away in the fridge",
+   "skills": [
+    "open door",
+    "pick-place",
+    "mobile"
+   ],
+   "objects": "bags, packages",
+   "needs": [
+    "rigid",
+    "mobile"
+   ],
+   "sources": [
+    "B1K",
+    "RC365"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "mobile base"
+  },
+  {
+   "id": 13,
+   "domain": "Kitchen",
+   "task": "Restock a pantry shelf",
+   "skills": [
+    "pick-place"
+   ],
+   "objects": "cans, boxes",
+   "needs": [
+    "rigid"
+   ],
+   "sources": [
+    "RC365",
+    "HUM"
+   ],
+   "demo": "",
+   "status": "ready",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 14,
+   "domain": "Kitchen",
+   "task": "Chop vegetables with a knife",
+   "skills": [
+    "tools",
+    "cutting"
+   ],
+   "objects": "knife, board, vegetables",
+   "needs": [
+    "tools",
+    "deform"
+   ],
+   "sources": [
+    "B1K",
+    "SHAP"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "deformables"
+  },
+  {
+   "id": 15,
+   "domain": "Kitchen",
+   "task": "Peel a potato",
+   "skills": [
+    "tools"
+   ],
+   "objects": "peeler, potato",
+   "needs": [
+    "tools",
+    "deform"
+   ],
+   "sources": [
+    "B1K"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "deformables"
+  },
+  {
+   "id": 16,
+   "domain": "Kitchen",
+   "task": "Stir a pot on the stove",
+   "skills": [
+    "tools"
+   ],
+   "objects": "spoon, pot",
+   "needs": [
+    "tools",
+    "fluid"
+   ],
+   "sources": [
+    "B1K"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "fluids"
+  },
+  {
+   "id": 17,
+   "domain": "Kitchen",
+   "task": "Flip a pancake with a spatula",
+   "skills": [
+    "tools"
+   ],
+   "objects": "spatula, pan",
+   "needs": [
+    "tools",
+    "deform"
+   ],
+   "sources": [
+    "HUM"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "deformables"
+  },
+  {
+   "id": 18,
+   "domain": "Kitchen",
+   "task": "Crack an egg into a bowl",
+   "skills": [
+    "precision"
+   ],
+   "objects": "egg, bowl",
+   "needs": [
+    "deform",
+    "precision"
+   ],
+   "sources": [
+    "B1K"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "deformables"
+  },
+  {
+   "id": 19,
+   "domain": "Kitchen",
+   "task": "Unscrew a jar lid",
+   "skills": [
+    "twist",
+    "grasp"
+   ],
+   "objects": "jar",
+   "needs": [
+    "rigid"
+   ],
+   "sources": [
+    "SHAP",
+    "RC365"
+   ],
+   "demo": "knob",
+   "status": "demo",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 20,
+   "domain": "Kitchen",
+   "task": "Unscrew a bottle cap",
+   "skills": [
+    "twist"
+   ],
+   "objects": "bottle",
+   "needs": [
+    "rigid",
+    "precision"
+   ],
+   "sources": [
+    "SHAP"
+   ],
+   "demo": "",
+   "status": "ready",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 21,
+   "domain": "Kitchen",
+   "task": "Open a can with an opener",
+   "skills": [
+    "tools",
+    "twist"
+   ],
+   "objects": "opener, can",
+   "needs": [
+    "tools"
+   ],
+   "sources": [
+    "B1K"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "tool use"
+  },
+  {
+   "id": 22,
+   "domain": "Kitchen",
+   "task": "Slice bread",
+   "skills": [
+    "tools"
+   ],
+   "objects": "knife, loaf",
+   "needs": [
+    "tools",
+    "deform"
+   ],
+   "sources": [
+    "B1K"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "deformables"
+  },
+  {
+   "id": 23,
+   "domain": "Kitchen",
+   "task": "Spread butter on toast",
+   "skills": [
+    "tools"
+   ],
+   "objects": "knife, toast",
+   "needs": [
+    "tools",
+    "deform"
+   ],
+   "sources": [
+    "B1K"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "deformables"
+  },
+  {
+   "id": 24,
+   "domain": "Kitchen",
+   "task": "Heat a meal in the microwave",
+   "skills": [
+    "open door",
+    "pick-place",
+    "press",
+    "close door"
+   ],
+   "objects": "microwave, plate",
+   "needs": [
+    "rigid"
+   ],
+   "sources": [
+    "RC365"
+   ],
+   "demo": "button",
+   "status": "demo",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 25,
+   "domain": "Kitchen",
+   "task": "Turn a stove knob",
+   "skills": [
+    "twist knob"
+   ],
+   "objects": "knob",
+   "needs": [
+    "rigid"
+   ],
+   "sources": [
+    "RC365"
+   ],
+   "demo": "knob",
+   "status": "demo",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 26,
+   "domain": "Kitchen",
+   "task": "Turn a tap lever on and off",
+   "skills": [
+    "lever"
+   ],
+   "objects": "tap",
+   "needs": [
+    "rigid"
+   ],
+   "sources": [
+    "RC365"
+   ],
+   "demo": "",
+   "status": "ready",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 27,
+   "domain": "Kitchen",
+   "task": "Open and close the oven door",
+   "skills": [
+    "door"
+   ],
+   "objects": "oven",
+   "needs": [
+    "rigid"
+   ],
+   "sources": [
+    "RC365"
+   ],
+   "demo": "",
+   "status": "ready",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 28,
+   "domain": "Kitchen",
+   "task": "Slide an oven rack out and in",
+   "skills": [
+    "sliding rack"
+   ],
+   "objects": "rack",
+   "needs": [
+    "rigid"
+   ],
+   "sources": [
+    "RC365"
+   ],
+   "demo": "",
+   "status": "ready",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 29,
+   "domain": "Kitchen",
+   "task": "Lift a pot lid and put it back",
+   "skills": [
+    "lid",
+    "pick-place"
+   ],
+   "objects": "lid, pot",
+   "needs": [
+    "rigid"
+   ],
+   "sources": [
+    "RC365"
+   ],
+   "demo": "",
+   "status": "ready",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 30,
+   "domain": "Kitchen",
+   "task": "Insert a plate into a dish rack",
+   "skills": [
+    "insertion"
+   ],
+   "objects": "plate, rack",
+   "needs": [
+    "rigid",
+    "precision"
+   ],
+   "sources": [
+    "RC365"
+   ],
+   "demo": "",
+   "status": "ready",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 31,
+   "domain": "Kitchen",
+   "task": "Hang a mug on a hook",
+   "skills": [
+    "precision hang"
+   ],
+   "objects": "mug, hook",
+   "needs": [
+    "rigid",
+    "precision"
+   ],
+   "sources": [
+    "LIB"
+   ],
+   "demo": "",
+   "status": "ready",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 32,
+   "domain": "Kitchen",
+   "task": "Take a hot tray out of the oven",
+   "skills": [
+    "pick-place",
+    "heavy"
+   ],
+   "objects": "tray, mitt",
+   "needs": [
+    "rigid",
+    "heavy"
+   ],
+   "sources": [
+    "B1K"
+   ],
+   "demo": "",
+   "status": "ready",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 33,
+   "domain": "Kitchen",
+   "task": "Season a dish with a shaker",
+   "skills": [
+    "shake"
+   ],
+   "objects": "shaker",
+   "needs": [
+    "fluid"
+   ],
+   "sources": [
+    "RC365"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "fluids"
+  },
+  {
+   "id": 34,
+   "domain": "Kitchen",
+   "task": "Serve food from a pot onto plates",
+   "skills": [
+    "tools"
+   ],
+   "objects": "ladle, pot, plates",
+   "needs": [
+    "tools",
+    "fluid"
+   ],
+   "sources": [
+    "B1K"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "fluids"
+  },
+  {
+   "id": 35,
+   "domain": "Kitchen",
+   "task": "Throw packaging into the bin",
+   "skills": [
+    "pick-place",
+    "open lid",
+    "mobile"
+   ],
+   "objects": "packaging, bin",
+   "needs": [
+    "rigid",
+    "mobile"
+   ],
+   "sources": [
+    "B1K",
+    "RC365"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "mobile base"
+  },
+  {
+   "id": 36,
+   "domain": "Kitchen",
+   "task": "Take out the trash bag",
+   "skills": [
+    "grasp",
+    "heavy",
+    "mobile"
+   ],
+   "objects": "bag",
+   "needs": [
+    "deform",
+    "heavy",
+    "mobile"
+   ],
+   "sources": [
+    "B1K",
+    "YOO"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "deformables"
+  },
+  {
+   "id": 37,
+   "domain": "Kitchen",
+   "task": "Fit a new trash bag",
+   "skills": [
+    "deform"
+   ],
+   "objects": "bag, bin",
+   "needs": [
+    "deform"
+   ],
+   "sources": [
+    "B1K"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "deformables"
+  },
+  {
+   "id": 38,
+   "domain": "Cleaning",
+   "task": "Scrub the bathroom floor",
+   "skills": [
+    "tools"
+   ],
+   "objects": "brush, floor",
+   "needs": [
+    "tools",
+    "fluid",
+    "mobile"
+   ],
+   "sources": [
+    "B1K"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "fluids"
+  },
+  {
+   "id": 39,
+   "domain": "Cleaning",
+   "task": "Mop the kitchen floor",
+   "skills": [
+    "tools",
+    "mobile"
+   ],
+   "objects": "mop, bucket",
+   "needs": [
+    "tools",
+    "fluid",
+    "mobile"
+   ],
+   "sources": [
+    "B1K",
+    "YOO"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "fluids"
+  },
+  {
+   "id": 40,
+   "domain": "Cleaning",
+   "task": "Clean the bathtub",
+   "skills": [
+    "tools"
+   ],
+   "objects": "sponge, tub",
+   "needs": [
+    "tools",
+    "fluid"
+   ],
+   "sources": [
+    "B1K"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "fluids"
+  },
+  {
+   "id": 41,
+   "domain": "Cleaning",
+   "task": "Clean the toilet",
+   "skills": [
+    "tools"
+   ],
+   "objects": "brush",
+   "needs": [
+    "tools",
+    "fluid"
+   ],
+   "sources": [
+    "B1K"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "fluids"
+  },
+  {
+   "id": 42,
+   "domain": "Cleaning",
+   "task": "Vacuum a carpet",
+   "skills": [
+    "tools",
+    "mobile"
+   ],
+   "objects": "vacuum",
+   "needs": [
+    "tools",
+    "mobile"
+   ],
+   "sources": [
+    "B1K",
+    "HUM"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "mobile base"
+  },
+  {
+   "id": 43,
+   "domain": "Cleaning",
+   "task": "Sweep with a broom and dustpan",
+   "skills": [
+    "tools",
+    "mobile"
+   ],
+   "objects": "broom, dustpan",
+   "needs": [
+    "tools",
+    "fluid",
+    "mobile"
+   ],
+   "sources": [
+    "B1K",
+    "HUM"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "fluids"
+  },
+  {
+   "id": 44,
+   "domain": "Cleaning",
+   "task": "Dust the shelves",
+   "skills": [
+    "tools",
+    "mobile"
+   ],
+   "objects": "duster",
+   "needs": [
+    "tools",
+    "mobile"
+   ],
+   "sources": [
+    "B1K"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "mobile base"
+  },
+  {
+   "id": 45,
+   "domain": "Cleaning",
+   "task": "Wipe a dining table",
+   "skills": [
+    "tools"
+   ],
+   "objects": "cloth",
+   "needs": [
+    "deform",
+    "tools"
+   ],
+   "sources": [
+    "B1K",
+    "OXE"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "deformables"
+  },
+  {
+   "id": 46,
+   "domain": "Cleaning",
+   "task": "Clean windows and mirrors",
+   "skills": [
+    "tools"
+   ],
+   "objects": "squeegee, spray",
+   "needs": [
+    "tools",
+    "fluid"
+   ],
+   "sources": [
+    "B1K"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "fluids"
+  },
+  {
+   "id": 47,
+   "domain": "Cleaning",
+   "task": "Wipe the stovetop",
+   "skills": [
+    "tools"
+   ],
+   "objects": "cloth",
+   "needs": [
+    "deform",
+    "tools"
+   ],
+   "sources": [
+    "B1K"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "deformables"
+  },
+  {
+   "id": 48,
+   "domain": "Cleaning",
+   "task": "Scrub pots and pans",
+   "skills": [
+    "tools"
+   ],
+   "objects": "scourer, pan",
+   "needs": [
+    "tools",
+    "fluid"
+   ],
+   "sources": [
+    "B1K"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "fluids"
+  },
+  {
+   "id": 49,
+   "domain": "Cleaning",
+   "task": "Empty the vacuum cleaner bin",
+   "skills": [
+    "pour"
+   ],
+   "objects": "bin",
+   "needs": [
+    "fluid"
+   ],
+   "sources": [
+    "B1K"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "fluids"
+  },
+  {
+   "id": 50,
+   "domain": "Cleaning",
+   "task": "Pick up litter from the floor",
+   "skills": [
+    "pick-place",
+    "mobile"
+   ],
+   "objects": "litter, bin",
+   "needs": [
+    "rigid",
+    "mobile"
+   ],
+   "sources": [
+    "B1K",
+    "HUM"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "mobile base"
+  },
+  {
+   "id": 51,
+   "domain": "Cleaning",
+   "task": "Wipe up a spill",
+   "skills": [
+    "tools"
+   ],
+   "objects": "cloth",
+   "needs": [
+    "deform",
+    "fluid"
+   ],
+   "sources": [
+    "B1K"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "deformables"
+  },
+  {
+   "id": 52,
+   "domain": "Cleaning",
+   "task": "Clean the sink",
+   "skills": [
+    "tools"
+   ],
+   "objects": "sponge",
+   "needs": [
+    "tools",
+    "fluid"
+   ],
+   "sources": [
+    "B1K"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "fluids"
+  },
+  {
+   "id": 53,
+   "domain": "Cleaning",
+   "task": "Change the bed sheets",
+   "skills": [
+    "deform"
+   ],
+   "objects": "sheets",
+   "needs": [
+    "deform"
+   ],
+   "sources": [
+    "B1K",
+    "HUM"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "deformables"
+  },
+  {
+   "id": 54,
+   "domain": "Cleaning",
+   "task": "Make the bed",
+   "skills": [
+    "deform"
+   ],
+   "objects": "duvet, pillows",
+   "needs": [
+    "deform"
+   ],
+   "sources": [
+    "B1K",
+    "HUM"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "deformables"
+  },
+  {
+   "id": 55,
+   "domain": "Cleaning",
+   "task": "Put toys back in a box",
+   "skills": [
+    "pick-place",
+    "mobile"
+   ],
+   "objects": "toys, box",
+   "needs": [
+    "rigid",
+    "mobile"
+   ],
+   "sources": [
+    "B1K",
+    "HUM"
+   ],
+   "demo": "box",
+   "status": "demo",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 56,
+   "domain": "Cleaning",
+   "task": "Water houseplants",
+   "skills": [
+    "pour",
+    "mobile"
+   ],
+   "objects": "watering can",
+   "needs": [
+    "fluid",
+    "mobile"
+   ],
+   "sources": [
+    "B1K",
+    "YOO"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "fluids"
+  },
+  {
+   "id": 57,
+   "domain": "Cleaning",
+   "task": "Clean a litter box",
+   "skills": [
+    "tools"
+   ],
+   "objects": "scoop",
+   "needs": [
+    "fluid",
+    "tools"
+   ],
+   "sources": [
+    "B1K"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "fluids"
+  },
+  {
+   "id": 58,
+   "domain": "Laundry",
+   "task": "Sort laundry by colour",
+   "skills": [
+    "deform",
+    "pick-place"
+   ],
+   "objects": "clothes",
+   "needs": [
+    "deform"
+   ],
+   "sources": [
+    "B1K"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "deformables"
+  },
+  {
+   "id": 59,
+   "domain": "Laundry",
+   "task": "Load the washing machine",
+   "skills": [
+    "deform",
+    "open door"
+   ],
+   "objects": "clothes, machine",
+   "needs": [
+    "deform"
+   ],
+   "sources": [
+    "B1K",
+    "YOO"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "deformables"
+  },
+  {
+   "id": 60,
+   "domain": "Laundry",
+   "task": "Move wet laundry to the dryer",
+   "skills": [
+    "deform"
+   ],
+   "objects": "clothes",
+   "needs": [
+    "deform"
+   ],
+   "sources": [
+    "B1K"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "deformables"
+  },
+  {
+   "id": 61,
+   "domain": "Laundry",
+   "task": "Unload the dryer into a basket",
+   "skills": [
+    "deform"
+   ],
+   "objects": "clothes, basket",
+   "needs": [
+    "deform"
+   ],
+   "sources": [
+    "B1K"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "deformables"
+  },
+  {
+   "id": 62,
+   "domain": "Laundry",
+   "task": "Fold a T-shirt",
+   "skills": [
+    "deform"
+   ],
+   "objects": "T-shirt",
+   "needs": [
+    "deform"
+   ],
+   "sources": [
+    "B1K",
+    "HUM"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "deformables"
+  },
+  {
+   "id": 63,
+   "domain": "Laundry",
+   "task": "Fold towels",
+   "skills": [
+    "deform"
+   ],
+   "objects": "towels",
+   "needs": [
+    "deform"
+   ],
+   "sources": [
+    "B1K",
+    "HUM"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "deformables"
+  },
+  {
+   "id": 64,
+   "domain": "Laundry",
+   "task": "Pair socks",
+   "skills": [
+    "deform"
+   ],
+   "objects": "socks",
+   "needs": [
+    "deform"
+   ],
+   "sources": [
+    "B1K"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "deformables"
+  },
+  {
+   "id": 65,
+   "domain": "Laundry",
+   "task": "Put a shirt on a hanger",
+   "skills": [
+    "deform",
+    "precision"
+   ],
+   "objects": "shirt, hanger",
+   "needs": [
+    "deform",
+    "precision"
+   ],
+   "sources": [
+    "B1K"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "deformables"
+  },
+  {
+   "id": 66,
+   "domain": "Laundry",
+   "task": "Hang laundry on a line with pegs",
+   "skills": [
+    "deform",
+    "precision",
+    "mobile"
+   ],
+   "objects": "pegs, line",
+   "needs": [
+    "deform",
+    "precision",
+    "mobile"
+   ],
+   "sources": [
+    "B1K"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "deformables"
+  },
+  {
+   "id": 67,
+   "domain": "Laundry",
+   "task": "Iron a shirt",
+   "skills": [
+    "tools",
+    "deform"
+   ],
+   "objects": "iron, shirt",
+   "needs": [
+    "tools",
+    "deform"
+   ],
+   "sources": [
+    "B1K"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "deformables"
+  },
+  {
+   "id": 68,
+   "domain": "Laundry",
+   "task": "Put folded clothes in a drawer",
+   "skills": [
+    "deform",
+    "open drawer"
+   ],
+   "objects": "clothes, drawer",
+   "needs": [
+    "deform"
+   ],
+   "sources": [
+    "B1K",
+    "HUM"
+   ],
+   "demo": "drawer",
+   "status": "demo",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 69,
+   "domain": "Laundry",
+   "task": "Zip a jacket",
+   "skills": [
+    "deform",
+    "precision"
+   ],
+   "objects": "zip",
+   "needs": [
+    "deform",
+    "precision"
+   ],
+   "sources": [
+    "SHAP"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "deformables"
+  },
+  {
+   "id": 70,
+   "domain": "Laundry",
+   "task": "Button a shirt",
+   "skills": [
+    "deform",
+    "precision"
+   ],
+   "objects": "buttons",
+   "needs": [
+    "deform",
+    "precision"
+   ],
+   "sources": [
+    "SHAP"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "deformables"
+  },
+  {
+   "id": 71,
+   "domain": "Laundry",
+   "task": "Tie shoelaces",
+   "skills": [
+    "deform",
+    "precision",
+    "bimanual"
+   ],
+   "objects": "laces",
+   "needs": [
+    "deform",
+    "precision"
+   ],
+   "sources": [
+    "B1K"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "deformables"
+  },
+  {
+   "id": 72,
+   "domain": "Laundry",
+   "task": "Help someone put on a jacket",
+   "skills": [
+    "deform",
+    "people"
+   ],
+   "objects": "jacket",
+   "needs": [
+    "deform",
+    "people"
+   ],
+   "sources": [
+    "ADL"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "deformables"
+  },
+  {
+   "id": 73,
+   "domain": "Tidying",
+   "task": "Put books back on a shelf",
+   "skills": [
+    "pick-place",
+    "insertion"
+   ],
+   "objects": "books, shelf",
+   "needs": [
+    "rigid"
+   ],
+   "sources": [
+    "B1K",
+    "HUM"
+   ],
+   "demo": "box",
+   "status": "demo",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 74,
+   "domain": "Tidying",
+   "task": "Organise a shelf by size",
+   "skills": [
+    "pick-place"
+   ],
+   "objects": "boxes, jars",
+   "needs": [
+    "rigid"
+   ],
+   "sources": [
+    "HUM"
+   ],
+   "demo": "stack",
+   "status": "demo",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 75,
+   "domain": "Tidying",
+   "task": "Put shoes on the rack",
+   "skills": [
+    "pick-place",
+    "mobile"
+   ],
+   "objects": "shoes",
+   "needs": [
+    "rigid",
+    "mobile"
+   ],
+   "sources": [
+    "B1K"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "mobile base"
+  },
+  {
+   "id": 76,
+   "domain": "Tidying",
+   "task": "Hang a coat on a hook",
+   "skills": [
+    "deform"
+   ],
+   "objects": "coat",
+   "needs": [
+    "deform"
+   ],
+   "sources": [
+    "B1K"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "deformables"
+  },
+  {
+   "id": 77,
+   "domain": "Tidying",
+   "task": "Put remotes and cables in a drawer",
+   "skills": [
+    "pick-place",
+    "open drawer"
+   ],
+   "objects": "remote, drawer",
+   "needs": [
+    "rigid"
+   ],
+   "sources": [
+    "B1K"
+   ],
+   "demo": "drawer",
+   "status": "demo",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 78,
+   "domain": "Tidying",
+   "task": "Sort the mail",
+   "skills": [
+    "deform"
+   ],
+   "objects": "envelopes",
+   "needs": [
+    "deform"
+   ],
+   "sources": [
+    "B1K"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "deformables"
+  },
+  {
+   "id": 79,
+   "domain": "Tidying",
+   "task": "Collect cups left around the house",
+   "skills": [
+    "mobile",
+    "pick-place"
+   ],
+   "objects": "cups",
+   "needs": [
+    "rigid",
+    "mobile"
+   ],
+   "sources": [
+    "B1K",
+    "HUM"
+   ],
+   "demo": "cup",
+   "status": "demo",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 80,
+   "domain": "Tidying",
+   "task": "Put things back where they belong",
+   "skills": [
+    "mobile",
+    "pick-place"
+   ],
+   "objects": "many",
+   "needs": [
+    "rigid",
+    "mobile"
+   ],
+   "sources": [
+    "B1K"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "mobile base"
+  },
+  {
+   "id": 81,
+   "domain": "Tidying",
+   "task": "Stack chairs",
+   "skills": [
+    "heavy",
+    "bimanual"
+   ],
+   "objects": "chairs",
+   "needs": [
+    "rigid",
+    "heavy"
+   ],
+   "sources": [
+    "B1K"
+   ],
+   "demo": "",
+   "status": "ready",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 82,
+   "domain": "Tidying",
+   "task": "Pack a suitcase",
+   "skills": [
+    "deform"
+   ],
+   "objects": "clothes, suitcase",
+   "needs": [
+    "deform"
+   ],
+   "sources": [
+    "B1K"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "deformables"
+  },
+  {
+   "id": 83,
+   "domain": "Tidying",
+   "task": "Wrap a gift",
+   "skills": [
+    "deform",
+    "precision"
+   ],
+   "objects": "paper, tape",
+   "needs": [
+    "deform",
+    "precision"
+   ],
+   "sources": [
+    "B1K"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "deformables"
+  },
+  {
+   "id": 84,
+   "domain": "Tidying",
+   "task": "Assemble flat-pack furniture",
+   "skills": [
+    "tools",
+    "precision",
+    "bimanual"
+   ],
+   "objects": "panels, screws",
+   "needs": [
+    "tools",
+    "precision"
+   ],
+   "sources": [
+    "B1K"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "tool use"
+  },
+  {
+   "id": 85,
+   "domain": "Tidying",
+   "task": "Hang a picture frame",
+   "skills": [
+    "precision",
+    "tools"
+   ],
+   "objects": "frame, nail",
+   "needs": [
+    "precision",
+    "tools"
+   ],
+   "sources": [
+    "B1K"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "tool use"
+  },
+  {
+   "id": 86,
+   "domain": "Tidying",
+   "task": "Change a light bulb",
+   "skills": [
+    "twist",
+    "precision"
+   ],
+   "objects": "bulb",
+   "needs": [
+    "rigid",
+    "precision"
+   ],
+   "sources": [
+    "B1K"
+   ],
+   "demo": "knob",
+   "status": "demo",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 87,
+   "domain": "Tidying",
+   "task": "Replace batteries in a remote",
+   "skills": [
+    "precision",
+    "insertion"
+   ],
+   "objects": "batteries",
+   "needs": [
+    "rigid",
+    "precision"
+   ],
+   "sources": [
+    "B1K"
+   ],
+   "demo": "",
+   "status": "ready",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 88,
+   "domain": "Tidying",
+   "task": "Plug in a charger",
+   "skills": [
+    "insertion",
+    "precision"
+   ],
+   "objects": "plug, socket",
+   "needs": [
+    "rigid",
+    "precision"
+   ],
+   "sources": [
+    "RC365"
+   ],
+   "demo": "",
+   "status": "ready",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 89,
+   "domain": "Care",
+   "task": "Pick up something dropped on the floor",
+   "skills": [
+    "pick-place",
+    "mobile"
+   ],
+   "objects": "any small object",
+   "needs": [
+    "rigid",
+    "mobile"
+   ],
+   "sources": [
+    "ADL",
+    "YOO"
+   ],
+   "demo": "cube25",
+   "status": "demo",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 90,
+   "domain": "Care",
+   "task": "Bring a glass of water to a person",
+   "skills": [
+    "carry",
+    "mobile",
+    "handover"
+   ],
+   "objects": "glass",
+   "needs": [
+    "fluid",
+    "mobile",
+    "people"
+   ],
+   "sources": [
+    "ADL"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "fluids"
+  },
+  {
+   "id": 91,
+   "domain": "Care",
+   "task": "Hand an object to a person",
+   "skills": [
+    "handover",
+    "people"
+   ],
+   "objects": "any",
+   "needs": [
+    "rigid",
+    "people"
+   ],
+   "sources": [
+    "ADL",
+    "OXE"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "human contact"
+  },
+  {
+   "id": 92,
+   "domain": "Care",
+   "task": "Open a child-proof medicine bottle",
+   "skills": [
+    "twist",
+    "push",
+    "precision"
+   ],
+   "objects": "bottle",
+   "needs": [
+    "rigid",
+    "precision"
+   ],
+   "sources": [
+    "ADL"
+   ],
+   "demo": "",
+   "status": "ready",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 93,
+   "domain": "Care",
+   "task": "Sort pills into a weekly organiser",
+   "skills": [
+    "precision",
+    "small objects"
+   ],
+   "objects": "pills, organiser",
+   "needs": [
+    "rigid",
+    "precision"
+   ],
+   "sources": [
+    "ADL"
+   ],
+   "demo": "",
+   "status": "ready",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 94,
+   "domain": "Care",
+   "task": "Feed someone with a spoon",
+   "skills": [
+    "tools",
+    "people"
+   ],
+   "objects": "spoon, bowl",
+   "needs": [
+    "tools",
+    "fluid",
+    "people"
+   ],
+   "sources": [
+    "ADL"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "fluids"
+  },
+  {
+   "id": 95,
+   "domain": "Care",
+   "task": "Hold a cup with a straw for someone",
+   "skills": [
+    "hold",
+    "people"
+   ],
+   "objects": "cup",
+   "needs": [
+    "fluid",
+    "people"
+   ],
+   "sources": [
+    "ADL"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "fluids"
+  },
+  {
+   "id": 96,
+   "domain": "Care",
+   "task": "Brush someone's hair",
+   "skills": [
+    "tools",
+    "people"
+   ],
+   "objects": "brush",
+   "needs": [
+    "tools",
+    "people"
+   ],
+   "sources": [
+    "ADL"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "tool use"
+  },
+  {
+   "id": 97,
+   "domain": "Care",
+   "task": "Apply lotion to an arm",
+   "skills": [
+    "people"
+   ],
+   "objects": "lotion",
+   "needs": [
+    "fluid",
+    "people"
+   ],
+   "sources": [
+    "ADL"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "fluids"
+  },
+  {
+   "id": 98,
+   "domain": "Care",
+   "task": "Help put on socks",
+   "skills": [
+    "deform",
+    "people"
+   ],
+   "objects": "socks",
+   "needs": [
+    "deform",
+    "people"
+   ],
+   "sources": [
+    "ADL"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "deformables"
+  },
+  {
+   "id": 99,
+   "domain": "Care",
+   "task": "Help someone from bed to a chair",
+   "skills": [
+    "people",
+    "heavy"
+   ],
+   "objects": "none",
+   "needs": [
+    "people",
+    "heavy"
+   ],
+   "sources": [
+    "ADL"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "human contact"
+  },
+  {
+   "id": 100,
+   "domain": "Care",
+   "task": "Reposition someone in bed",
+   "skills": [
+    "people",
+    "heavy"
+   ],
+   "objects": "none",
+   "needs": [
+    "people",
+    "heavy"
+   ],
+   "sources": [
+    "ADL"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "human contact"
+  },
+  {
+   "id": 101,
+   "domain": "Care",
+   "task": "Push a wheelchair",
+   "skills": [
+    "mobile",
+    "people"
+   ],
+   "objects": "wheelchair",
+   "needs": [
+    "mobile",
+    "people"
+   ],
+   "sources": [
+    "ADL"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "mobile base"
+  },
+  {
+   "id": 102,
+   "domain": "Care",
+   "task": "Carry groceries in from the car",
+   "skills": [
+    "heavy",
+    "mobile"
+   ],
+   "objects": "bags",
+   "needs": [
+    "deform",
+    "heavy",
+    "mobile"
+   ],
+   "sources": [
+    "ADL",
+    "YOO"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "deformables"
+  },
+  {
+   "id": 103,
+   "domain": "Care",
+   "task": "Fetch an item from a high shelf",
+   "skills": [
+    "reach",
+    "mobile"
+   ],
+   "objects": "any",
+   "needs": [
+    "rigid",
+    "mobile"
+   ],
+   "sources": [
+    "ADL",
+    "YOO"
+   ],
+   "demo": "cup",
+   "status": "demo",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 104,
+   "domain": "Care",
+   "task": "Open a door for someone",
+   "skills": [
+    "door",
+    "mobile"
+   ],
+   "objects": "door",
+   "needs": [
+    "rigid",
+    "mobile"
+   ],
+   "sources": [
+    "ADL"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "mobile base"
+  },
+  {
+   "id": 105,
+   "domain": "Care",
+   "task": "Turn the pages of a book",
+   "skills": [
+    "deform",
+    "precision"
+   ],
+   "objects": "book",
+   "needs": [
+    "deform",
+    "precision"
+   ],
+   "sources": [
+    "SHAP",
+    "ADL"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "deformables"
+  },
+  {
+   "id": 106,
+   "domain": "Care",
+   "task": "Hold a tablet at reading height",
+   "skills": [
+    "hold"
+   ],
+   "objects": "tablet",
+   "needs": [
+    "rigid"
+   ],
+   "sources": [
+    "ADL"
+   ],
+   "demo": "",
+   "status": "ready",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 107,
+   "domain": "Care",
+   "task": "Write or sign with a pen",
+   "skills": [
+    "tools",
+    "precision"
+   ],
+   "objects": "pen",
+   "needs": [
+    "tools",
+    "precision"
+   ],
+   "sources": [
+    "JT"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "tool use"
+  },
+  {
+   "id": 108,
+   "domain": "Care",
+   "task": "Unlock a door with a key",
+   "skills": [
+    "precision",
+    "twist"
+   ],
+   "objects": "key",
+   "needs": [
+    "rigid",
+    "precision"
+   ],
+   "sources": [
+    "SHAP"
+   ],
+   "demo": "",
+   "status": "ready",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 109,
+   "domain": "Care",
+   "task": "Press an elevator button",
+   "skills": [
+    "press"
+   ],
+   "objects": "button",
+   "needs": [
+    "rigid"
+   ],
+   "sources": [
+    "ADL"
+   ],
+   "demo": "button",
+   "status": "demo",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 110,
+   "domain": "Office",
+   "task": "Restock shelves in a store",
+   "skills": [
+    "pick-place",
+    "mobile"
+   ],
+   "objects": "products",
+   "needs": [
+    "rigid",
+    "mobile"
+   ],
+   "sources": [
+    "HUM",
+    "IND"
+   ],
+   "demo": "heavy",
+   "status": "demo",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 111,
+   "domain": "Office",
+   "task": "Scan and bag groceries at a till",
+   "skills": [
+    "pick-place",
+    "deform"
+   ],
+   "objects": "products, bags",
+   "needs": [
+    "deform"
+   ],
+   "sources": [
+    "IND"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "deformables"
+  },
+  {
+   "id": 112,
+   "domain": "Office",
+   "task": "Count inventory by picking and scanning",
+   "skills": [
+    "pick"
+   ],
+   "objects": "products",
+   "needs": [
+    "rigid"
+   ],
+   "sources": [
+    "IND"
+   ],
+   "demo": "",
+   "status": "ready",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 113,
+   "domain": "Office",
+   "task": "Carry drinks on a tray",
+   "skills": [
+    "carry"
+   ],
+   "objects": "tray, glasses",
+   "needs": [
+    "fluid"
+   ],
+   "sources": [
+    "B1K",
+    "SHAP"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "fluids"
+  },
+  {
+   "id": 114,
+   "domain": "Office",
+   "task": "Bus tables in a restaurant",
+   "skills": [
+    "pick-place",
+    "mobile"
+   ],
+   "objects": "dishes",
+   "needs": [
+    "rigid",
+    "mobile"
+   ],
+   "sources": [
+    "B1K"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "mobile base"
+  },
+  {
+   "id": 115,
+   "domain": "Office",
+   "task": "Make a hotel bed",
+   "skills": [
+    "deform"
+   ],
+   "objects": "sheets",
+   "needs": [
+    "deform"
+   ],
+   "sources": [
+    "B1K"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "deformables"
+  },
+  {
+   "id": 116,
+   "domain": "Office",
+   "task": "Deliver an item from room to room",
+   "skills": [
+    "mobile",
+    "handover"
+   ],
+   "objects": "any",
+   "needs": [
+    "rigid",
+    "mobile"
+   ],
+   "sources": [
+    "HUM"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "mobile base"
+  },
+  {
+   "id": 117,
+   "domain": "Office",
+   "task": "Sort parcels by label",
+   "skills": [
+    "pick-place"
+   ],
+   "objects": "parcels",
+   "needs": [
+    "rigid"
+   ],
+   "sources": [
+    "IND"
+   ],
+   "demo": "",
+   "status": "ready",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 118,
+   "domain": "Office",
+   "task": "File papers in a folder",
+   "skills": [
+    "deform"
+   ],
+   "objects": "paper",
+   "needs": [
+    "deform"
+   ],
+   "sources": [
+    "B1K"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "deformables"
+  },
+  {
+   "id": 119,
+   "domain": "Office",
+   "task": "Refill a printer paper tray",
+   "skills": [
+    "deform stack"
+   ],
+   "objects": "paper",
+   "needs": [
+    "deform"
+   ],
+   "sources": [
+    "B1K"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "deformables"
+  },
+  {
+   "id": 120,
+   "domain": "Office",
+   "task": "Open and close window blinds",
+   "skills": [
+    "pull cord"
+   ],
+   "objects": "cord",
+   "needs": [
+    "deform"
+   ],
+   "sources": [
+    "B1K"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "deformables"
+  },
+  {
+   "id": 121,
+   "domain": "Office",
+   "task": "Water the office plants",
+   "skills": [
+    "pour",
+    "mobile"
+   ],
+   "objects": "can",
+   "needs": [
+    "fluid",
+    "mobile"
+   ],
+   "sources": [
+    "B1K"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "fluids"
+  },
+  {
+   "id": 122,
+   "domain": "Warehouse",
+   "task": "Pick mixed items from a bin",
+   "skills": [
+    "pick"
+   ],
+   "objects": "mixed SKUs",
+   "needs": [
+    "rigid"
+   ],
+   "sources": [
+    "IND",
+    "OXE"
+   ],
+   "demo": "ball",
+   "status": "demo",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 123,
+   "domain": "Warehouse",
+   "task": "Pick items into a tote",
+   "skills": [
+    "pick-place"
+   ],
+   "objects": "items, tote",
+   "needs": [
+    "rigid"
+   ],
+   "sources": [
+    "IND"
+   ],
+   "demo": "",
+   "status": "ready",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 124,
+   "domain": "Warehouse",
+   "task": "Lift and move a full tote",
+   "skills": [
+    "heavy",
+    "bimanual"
+   ],
+   "objects": "tote",
+   "needs": [
+    "rigid",
+    "heavy"
+   ],
+   "sources": [
+    "HUM",
+    "IND"
+   ],
+   "demo": "",
+   "status": "ready",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 125,
+   "domain": "Warehouse",
+   "task": "Depalletize boxes",
+   "skills": [
+    "heavy",
+    "stacking"
+   ],
+   "objects": "boxes",
+   "needs": [
+    "rigid",
+    "heavy"
+   ],
+   "sources": [
+    "IND"
+   ],
+   "demo": "",
+   "status": "ready",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 126,
+   "domain": "Warehouse",
+   "task": "Palletize boxes",
+   "skills": [
+    "stacking",
+    "heavy"
+   ],
+   "objects": "boxes",
+   "needs": [
+    "rigid",
+    "heavy"
+   ],
+   "sources": [
+    "IND"
+   ],
+   "demo": "stack",
+   "status": "demo",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 127,
+   "domain": "Warehouse",
+   "task": "Unload a truck",
+   "skills": [
+    "heavy",
+    "mobile"
+   ],
+   "objects": "boxes",
+   "needs": [
+    "rigid",
+    "heavy",
+    "mobile"
+   ],
+   "sources": [
+    "IND"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "mobile base"
+  },
+  {
+   "id": 128,
+   "domain": "Warehouse",
+   "task": "Pack items into a shipping box",
+   "skills": [
+    "pick-place",
+    "insertion"
+   ],
+   "objects": "items, box",
+   "needs": [
+    "rigid"
+   ],
+   "sources": [
+    "IND"
+   ],
+   "demo": "",
+   "status": "ready",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 129,
+   "domain": "Warehouse",
+   "task": "Seal a box with tape",
+   "skills": [
+    "deform",
+    "tools"
+   ],
+   "objects": "tape",
+   "needs": [
+    "deform",
+    "tools"
+   ],
+   "sources": [
+    "IND"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "deformables"
+  },
+  {
+   "id": 130,
+   "domain": "Warehouse",
+   "task": "Sort parcels onto conveyors",
+   "skills": [
+    "pick-place"
+   ],
+   "objects": "parcels",
+   "needs": [
+    "rigid"
+   ],
+   "sources": [
+    "IND"
+   ],
+   "demo": "",
+   "status": "ready",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 131,
+   "domain": "Warehouse",
+   "task": "Apply a shipping label",
+   "skills": [
+    "deform"
+   ],
+   "objects": "label",
+   "needs": [
+    "deform",
+    "precision"
+   ],
+   "sources": [
+    "IND"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "deformables"
+  },
+  {
+   "id": 132,
+   "domain": "Warehouse",
+   "task": "Handle sacks and bags",
+   "skills": [
+    "deform",
+    "heavy"
+   ],
+   "objects": "sacks",
+   "needs": [
+    "deform",
+    "heavy"
+   ],
+   "sources": [
+    "IND"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "deformables"
+  },
+  {
+   "id": 133,
+   "domain": "Warehouse",
+   "task": "Pick from a shelf onto a cart",
+   "skills": [
+    "mobile",
+    "pick"
+   ],
+   "objects": "products",
+   "needs": [
+    "rigid",
+    "mobile"
+   ],
+   "sources": [
+    "IND"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "mobile base"
+  },
+  {
+   "id": 134,
+   "domain": "Manufacturing",
+   "task": "Load and unload a CNC machine",
+   "skills": [
+    "pick-place",
+    "door",
+    "precision"
+   ],
+   "objects": "parts, fixture",
+   "needs": [
+    "rigid",
+    "precision"
+   ],
+   "sources": [
+    "IND"
+   ],
+   "demo": "",
+   "status": "ready",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 135,
+   "domain": "Manufacturing",
+   "task": "Peg-in-hole insertion",
+   "skills": [
+    "insertion",
+    "precision"
+   ],
+   "objects": "peg, hole",
+   "needs": [
+    "rigid",
+    "precision"
+   ],
+   "sources": [
+    "RLB",
+    "RC365"
+   ],
+   "demo": "",
+   "status": "ready",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 136,
+   "domain": "Manufacturing",
+   "task": "Drive a screw with a screwdriver",
+   "skills": [
+    "tools",
+    "twist"
+   ],
+   "objects": "screwdriver, screw",
+   "needs": [
+    "tools",
+    "precision"
+   ],
+   "sources": [
+    "SHAP",
+    "IND"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "tool use"
+  },
+  {
+   "id": 137,
+   "domain": "Manufacturing",
+   "task": "Thread a nut onto a bolt",
+   "skills": [
+    "twist",
+    "bimanual"
+   ],
+   "objects": "nut, bolt",
+   "needs": [
+    "rigid",
+    "precision"
+   ],
+   "sources": [
+    "ARAT",
+    "IND"
+   ],
+   "demo": "",
+   "status": "ready",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 138,
+   "domain": "Manufacturing",
+   "task": "Route a cable through clips",
+   "skills": [
+    "deform"
+   ],
+   "objects": "cable, clips",
+   "needs": [
+    "deform",
+    "precision"
+   ],
+   "sources": [
+    "IND"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "deformables"
+  },
+  {
+   "id": 139,
+   "domain": "Manufacturing",
+   "task": "Insert a connector",
+   "skills": [
+    "insertion",
+    "precision"
+   ],
+   "objects": "connector",
+   "needs": [
+    "rigid",
+    "precision"
+   ],
+   "sources": [
+    "IND"
+   ],
+   "demo": "",
+   "status": "ready",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 140,
+   "domain": "Manufacturing",
+   "task": "Kit parts into a tray",
+   "skills": [
+    "pick-place"
+   ],
+   "objects": "parts, tray",
+   "needs": [
+    "rigid"
+   ],
+   "sources": [
+    "IND"
+   ],
+   "demo": "",
+   "status": "ready",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 141,
+   "domain": "Manufacturing",
+   "task": "Snap-fit two parts together",
+   "skills": [
+    "insertion",
+    "force"
+   ],
+   "objects": "parts",
+   "needs": [
+    "rigid",
+    "precision"
+   ],
+   "sources": [
+    "IND"
+   ],
+   "demo": "",
+   "status": "ready",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 142,
+   "domain": "Manufacturing",
+   "task": "Press-fit a bearing",
+   "skills": [
+    "precision",
+    "force"
+   ],
+   "objects": "bearing",
+   "needs": [
+    "rigid",
+    "precision",
+    "heavy"
+   ],
+   "sources": [
+    "IND"
+   ],
+   "demo": "",
+   "status": "ready",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 143,
+   "domain": "Manufacturing",
+   "task": "Handle sheet metal blanks",
+   "skills": [
+    "heavy",
+    "flat"
+   ],
+   "objects": "sheets",
+   "needs": [
+    "rigid",
+    "heavy"
+   ],
+   "sources": [
+    "IND"
+   ],
+   "demo": "",
+   "status": "ready",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 144,
+   "domain": "Manufacturing",
+   "task": "Deburr and sand an edge",
+   "skills": [
+    "tools",
+    "force control"
+   ],
+   "objects": "sander",
+   "needs": [
+    "tools"
+   ],
+   "sources": [
+    "IND"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "tool use"
+  },
+  {
+   "id": 145,
+   "domain": "Manufacturing",
+   "task": "Inspect a part by rotating it in hand",
+   "skills": [
+    "in-hand rotation"
+   ],
+   "objects": "part",
+   "needs": [
+    "rigid"
+   ],
+   "sources": [
+    "IND"
+   ],
+   "demo": "",
+   "status": "ready",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 146,
+   "domain": "Manufacturing",
+   "task": "Tighten a bolt with a wrench",
+   "skills": [
+    "tools",
+    "twist"
+   ],
+   "objects": "wrench",
+   "needs": [
+    "tools"
+   ],
+   "sources": [
+    "IND"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "tool use"
+  },
+  {
+   "id": 147,
+   "domain": "Manufacturing",
+   "task": "Insert a battery module into a pack",
+   "skills": [
+    "heavy",
+    "precision"
+   ],
+   "objects": "module",
+   "needs": [
+    "rigid",
+    "heavy",
+    "precision"
+   ],
+   "sources": [
+    "HUM",
+    "IND"
+   ],
+   "demo": "",
+   "status": "ready",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 148,
+   "domain": "Manufacturing",
+   "task": "Pick a part from a moving conveyor",
+   "skills": [
+    "dynamic pick"
+   ],
+   "objects": "parts",
+   "needs": [
+    "rigid"
+   ],
+   "sources": [
+    "IND"
+   ],
+   "demo": "",
+   "status": "ready",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 149,
+   "domain": "Lab",
+   "task": "Cap and uncap sample vials",
+   "skills": [
+    "twist",
+    "precision"
+   ],
+   "objects": "vials",
+   "needs": [
+    "rigid",
+    "precision"
+   ],
+   "sources": [
+    "IND"
+   ],
+   "demo": "knob",
+   "status": "demo",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 150,
+   "domain": "Lab",
+   "task": "Pipette liquid between tubes",
+   "skills": [
+    "tools",
+    "precision"
+   ],
+   "objects": "pipette",
+   "needs": [
+    "tools",
+    "fluid",
+    "precision"
+   ],
+   "sources": [
+    "IND"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "fluids"
+  },
+  {
+   "id": 151,
+   "domain": "Lab",
+   "task": "Load tubes into a centrifuge",
+   "skills": [
+    "insertion",
+    "lid"
+   ],
+   "objects": "tubes, rotor",
+   "needs": [
+    "rigid",
+    "precision"
+   ],
+   "sources": [
+    "IND"
+   ],
+   "demo": "",
+   "status": "ready",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 152,
+   "domain": "Lab",
+   "task": "Handle petri dishes",
+   "skills": [
+    "flat pick",
+    "precision"
+   ],
+   "objects": "dishes",
+   "needs": [
+    "rigid",
+    "precision"
+   ],
+   "sources": [
+    "IND"
+   ],
+   "demo": "",
+   "status": "ready",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 153,
+   "domain": "Lab",
+   "task": "Open sterile packaging",
+   "skills": [
+    "deform"
+   ],
+   "objects": "packaging",
+   "needs": [
+    "deform"
+   ],
+   "sources": [
+    "IND"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "deformables"
+  },
+  {
+   "id": 154,
+   "domain": "Lab",
+   "task": "Hand instruments to a surgeon",
+   "skills": [
+    "handover",
+    "people"
+   ],
+   "objects": "instruments",
+   "needs": [
+    "rigid",
+    "people"
+   ],
+   "sources": [
+    "ADL"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "human contact"
+  },
+  {
+   "id": 155,
+   "domain": "Lab",
+   "task": "Restock a medical cart",
+   "skills": [
+    "pick-place",
+    "mobile"
+   ],
+   "objects": "supplies",
+   "needs": [
+    "rigid",
+    "mobile"
+   ],
+   "sources": [
+    "IND"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "mobile base"
+  },
+  {
+   "id": 156,
+   "domain": "Lab",
+   "task": "Disinfect a surface",
+   "skills": [
+    "tools"
+   ],
+   "objects": "wipe",
+   "needs": [
+    "deform",
+    "fluid",
+    "tools"
+   ],
+   "sources": [
+    "IND"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "deformables"
+  },
+  {
+   "id": 157,
+   "domain": "Outdoor",
+   "task": "Harvest apples from a tree",
+   "skills": [
+    "delicate pick",
+    "mobile"
+   ],
+   "objects": "apples",
+   "needs": [
+    "deform",
+    "mobile"
+   ],
+   "sources": [
+    "IND"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "deformables"
+  },
+  {
+   "id": 158,
+   "domain": "Outdoor",
+   "task": "Pick strawberries",
+   "skills": [
+    "delicate pick",
+    "precision"
+   ],
+   "objects": "berries",
+   "needs": [
+    "deform",
+    "precision"
+   ],
+   "sources": [
+    "IND"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "deformables"
+  },
+  {
+   "id": 159,
+   "domain": "Outdoor",
+   "task": "Pull weeds",
+   "skills": [
+    "deform",
+    "mobile"
+   ],
+   "objects": "weeds",
+   "needs": [
+    "deform",
+    "mobile"
+   ],
+   "sources": [
+    "B1K"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "deformables"
+  },
+  {
+   "id": 160,
+   "domain": "Outdoor",
+   "task": "Water the garden with a hose",
+   "skills": [
+    "fluid",
+    "deform"
+   ],
+   "objects": "hose",
+   "needs": [
+    "fluid",
+    "deform"
+   ],
+   "sources": [
+    "B1K"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "deformables"
+  },
+  {
+   "id": 161,
+   "domain": "Outdoor",
+   "task": "Mow the lawn",
+   "skills": [
+    "tools",
+    "mobile"
+   ],
+   "objects": "mower",
+   "needs": [
+    "tools",
+    "mobile"
+   ],
+   "sources": [
+    "B1K",
+    "YOO"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "mobile base"
+  },
+  {
+   "id": 162,
+   "domain": "Outdoor",
+   "task": "Rake leaves",
+   "skills": [
+    "tools",
+    "mobile"
+   ],
+   "objects": "rake",
+   "needs": [
+    "tools",
+    "fluid",
+    "mobile"
+   ],
+   "sources": [
+    "B1K"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "fluids"
+  },
+  {
+   "id": 163,
+   "domain": "Outdoor",
+   "task": "Shovel snow",
+   "skills": [
+    "tools",
+    "heavy",
+    "mobile"
+   ],
+   "objects": "shovel",
+   "needs": [
+    "tools",
+    "heavy",
+    "mobile"
+   ],
+   "sources": [
+    "B1K"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "mobile base"
+  },
+  {
+   "id": 164,
+   "domain": "Outdoor",
+   "task": "Plug in an electric car",
+   "skills": [
+    "insertion",
+    "heavy"
+   ],
+   "objects": "charger",
+   "needs": [
+    "rigid",
+    "precision",
+    "heavy"
+   ],
+   "sources": [
+    "HUM"
+   ],
+   "demo": "",
+   "status": "ready",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 165,
+   "domain": "Outdoor",
+   "task": "Wash a car",
+   "skills": [
+    "tools",
+    "fluid"
+   ],
+   "objects": "sponge, hose",
+   "needs": [
+    "tools",
+    "fluid"
+   ],
+   "sources": [
+    "B1K"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "fluids"
+  },
+  {
+   "id": 166,
+   "domain": "Outdoor",
+   "task": "Change a car tyre",
+   "skills": [
+    "tools",
+    "heavy",
+    "precision"
+   ],
+   "objects": "jack, wrench",
+   "needs": [
+    "tools",
+    "heavy",
+    "precision"
+   ],
+   "sources": [
+    "B1K"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "tool use"
+  },
+  {
+   "id": 167,
+   "domain": "Outdoor",
+   "task": "Carry firewood",
+   "skills": [
+    "heavy",
+    "mobile"
+   ],
+   "objects": "logs",
+   "needs": [
+    "rigid",
+    "heavy",
+    "mobile"
+   ],
+   "sources": [
+    "B1K"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "mobile base"
+  },
+  {
+   "id": 168,
+   "domain": "Outdoor",
+   "task": "Fill a pet's food bowl",
+   "skills": [
+    "pour"
+   ],
+   "objects": "kibble, bowl",
+   "needs": [
+    "fluid"
+   ],
+   "sources": [
+    "B1K",
+    "YOO"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "fluids"
+  },
+  {
+   "id": 169,
+   "domain": "Clinical",
+   "task": "SHAP abstract: spherical grip, light and heavy",
+   "skills": [
+    "grasp"
+   ],
+   "objects": "sphere",
+   "needs": [
+    "rigid"
+   ],
+   "sources": [
+    "SHAP"
+   ],
+   "demo": "ball",
+   "status": "demo",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 170,
+   "domain": "Clinical",
+   "task": "SHAP abstract: tripod grip, light and heavy",
+   "skills": [
+    "grasp"
+   ],
+   "objects": "small cylinder",
+   "needs": [
+    "rigid"
+   ],
+   "sources": [
+    "SHAP"
+   ],
+   "demo": "bottle",
+   "status": "demo",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 171,
+   "domain": "Clinical",
+   "task": "SHAP abstract: power grip, light and heavy",
+   "skills": [
+    "grasp"
+   ],
+   "objects": "large cylinder",
+   "needs": [
+    "rigid"
+   ],
+   "sources": [
+    "SHAP"
+   ],
+   "demo": "heavy",
+   "status": "demo",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 172,
+   "domain": "Clinical",
+   "task": "SHAP abstract: lateral grip, light and heavy",
+   "skills": [
+    "pinch"
+   ],
+   "objects": "card",
+   "needs": [
+    "rigid",
+    "precision"
+   ],
+   "sources": [
+    "SHAP"
+   ],
+   "demo": "",
+   "status": "ready",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 173,
+   "domain": "Clinical",
+   "task": "SHAP abstract: tip pinch, light and heavy",
+   "skills": [
+    "pinch"
+   ],
+   "objects": "small cube",
+   "needs": [
+    "rigid",
+    "precision"
+   ],
+   "sources": [
+    "SHAP"
+   ],
+   "demo": "cube25",
+   "status": "demo",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 174,
+   "domain": "Clinical",
+   "task": "SHAP abstract: extension grip, light and heavy",
+   "skills": [
+    "grasp"
+   ],
+   "objects": "plate",
+   "needs": [
+    "rigid"
+   ],
+   "sources": [
+    "SHAP"
+   ],
+   "demo": "box",
+   "status": "demo",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 175,
+   "domain": "Clinical",
+   "task": "SHAP: pick up coins into a slot",
+   "skills": [
+    "pinch",
+    "precision"
+   ],
+   "objects": "coins",
+   "needs": [
+    "rigid",
+    "precision"
+   ],
+   "sources": [
+    "SHAP"
+   ],
+   "demo": "",
+   "status": "ready",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 176,
+   "domain": "Clinical",
+   "task": "SHAP: button board",
+   "skills": [
+    "deform",
+    "precision"
+   ],
+   "objects": "buttons",
+   "needs": [
+    "deform",
+    "precision"
+   ],
+   "sources": [
+    "SHAP"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "deformables"
+  },
+  {
+   "id": 177,
+   "domain": "Clinical",
+   "task": "SHAP: simulated food cutting",
+   "skills": [
+    "tools"
+   ],
+   "objects": "knife, putty",
+   "needs": [
+    "tools",
+    "deform"
+   ],
+   "sources": [
+    "SHAP"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "deformables"
+  },
+  {
+   "id": 178,
+   "domain": "Clinical",
+   "task": "SHAP: page turning",
+   "skills": [
+    "deform"
+   ],
+   "objects": "page",
+   "needs": [
+    "deform",
+    "precision"
+   ],
+   "sources": [
+    "SHAP"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "deformables"
+  },
+  {
+   "id": 179,
+   "domain": "Clinical",
+   "task": "SHAP: jar lid",
+   "skills": [
+    "twist"
+   ],
+   "objects": "jar",
+   "needs": [
+    "rigid"
+   ],
+   "sources": [
+    "SHAP"
+   ],
+   "demo": "knob",
+   "status": "demo",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 180,
+   "domain": "Clinical",
+   "task": "SHAP: glass jug pouring",
+   "skills": [
+    "pour"
+   ],
+   "objects": "jug",
+   "needs": [
+    "fluid"
+   ],
+   "sources": [
+    "SHAP"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "fluids"
+  },
+  {
+   "id": 181,
+   "domain": "Clinical",
+   "task": "SHAP: carton pouring",
+   "skills": [
+    "pour"
+   ],
+   "objects": "carton",
+   "needs": [
+    "fluid",
+    "deform"
+   ],
+   "sources": [
+    "SHAP"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "deformables"
+  },
+  {
+   "id": 182,
+   "domain": "Clinical",
+   "task": "SHAP: lift a heavy object",
+   "skills": [
+    "grasp",
+    "lift"
+   ],
+   "objects": "tin",
+   "needs": [
+    "rigid"
+   ],
+   "sources": [
+    "SHAP"
+   ],
+   "demo": "heavy",
+   "status": "demo",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 183,
+   "domain": "Clinical",
+   "task": "SHAP: lift a light object",
+   "skills": [
+    "grasp",
+    "lift"
+   ],
+   "objects": "tin",
+   "needs": [
+    "rigid"
+   ],
+   "sources": [
+    "SHAP"
+   ],
+   "demo": "cup",
+   "status": "demo",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 184,
+   "domain": "Clinical",
+   "task": "SHAP: lift a tray",
+   "skills": [
+    "bimanual carry"
+   ],
+   "objects": "tray",
+   "needs": [
+    "rigid"
+   ],
+   "sources": [
+    "SHAP"
+   ],
+   "demo": "",
+   "status": "ready",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 185,
+   "domain": "Clinical",
+   "task": "SHAP: rotate a key",
+   "skills": [
+    "precision",
+    "twist"
+   ],
+   "objects": "key",
+   "needs": [
+    "rigid",
+    "precision"
+   ],
+   "sources": [
+    "SHAP"
+   ],
+   "demo": "",
+   "status": "ready",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 186,
+   "domain": "Clinical",
+   "task": "SHAP: open and close a zip",
+   "skills": [
+    "deform",
+    "precision"
+   ],
+   "objects": "zip",
+   "needs": [
+    "deform",
+    "precision"
+   ],
+   "sources": [
+    "SHAP"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "deformables"
+  },
+  {
+   "id": 187,
+   "domain": "Clinical",
+   "task": "SHAP: rotate a screw",
+   "skills": [
+    "tools",
+    "twist"
+   ],
+   "objects": "screwdriver",
+   "needs": [
+    "tools",
+    "precision"
+   ],
+   "sources": [
+    "SHAP"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "tool use"
+  },
+  {
+   "id": 188,
+   "domain": "Clinical",
+   "task": "SHAP: door handle",
+   "skills": [
+    "lever"
+   ],
+   "objects": "handle",
+   "needs": [
+    "rigid"
+   ],
+   "sources": [
+    "SHAP"
+   ],
+   "demo": "",
+   "status": "ready",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 189,
+   "domain": "Clinical",
+   "task": "Jebsen: writing a sentence",
+   "skills": [
+    "tools",
+    "precision"
+   ],
+   "objects": "pen",
+   "needs": [
+    "tools",
+    "precision"
+   ],
+   "sources": [
+    "JT"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "tool use"
+  },
+  {
+   "id": 190,
+   "domain": "Clinical",
+   "task": "Jebsen: turning over cards",
+   "skills": [
+    "deform",
+    "precision"
+   ],
+   "objects": "cards",
+   "needs": [
+    "deform",
+    "precision"
+   ],
+   "sources": [
+    "JT"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "deformables"
+  },
+  {
+   "id": 191,
+   "domain": "Clinical",
+   "task": "Jebsen: small common objects into a can",
+   "skills": [
+    "pinch",
+    "place"
+   ],
+   "objects": "paperclip, coin, cap",
+   "needs": [
+    "rigid",
+    "precision"
+   ],
+   "sources": [
+    "JT"
+   ],
+   "demo": "box",
+   "status": "demo",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 192,
+   "domain": "Clinical",
+   "task": "Jebsen: simulated feeding",
+   "skills": [
+    "tools"
+   ],
+   "objects": "spoon, beans",
+   "needs": [
+    "tools",
+    "fluid"
+   ],
+   "sources": [
+    "JT"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "fluids"
+  },
+  {
+   "id": 193,
+   "domain": "Clinical",
+   "task": "Jebsen: stacking checkers",
+   "skills": [
+    "stack",
+    "precision"
+   ],
+   "objects": "checkers",
+   "needs": [
+    "rigid",
+    "precision"
+   ],
+   "sources": [
+    "JT"
+   ],
+   "demo": "stack",
+   "status": "demo",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 194,
+   "domain": "Clinical",
+   "task": "Jebsen: large light cans",
+   "skills": [
+    "grasp"
+   ],
+   "objects": "cans",
+   "needs": [
+    "rigid"
+   ],
+   "sources": [
+    "JT"
+   ],
+   "demo": "cup",
+   "status": "demo",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 195,
+   "domain": "Clinical",
+   "task": "Jebsen: large heavy cans",
+   "skills": [
+    "grasp"
+   ],
+   "objects": "cans",
+   "needs": [
+    "rigid"
+   ],
+   "sources": [
+    "JT"
+   ],
+   "demo": "heavy",
+   "status": "demo",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 196,
+   "domain": "Clinical",
+   "task": "ARAT grasp: 10 cm block",
+   "skills": [
+    "grasp",
+    "lift"
+   ],
+   "objects": "block",
+   "needs": [
+    "rigid"
+   ],
+   "sources": [
+    "ARAT"
+   ],
+   "demo": "",
+   "status": "ready",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 197,
+   "domain": "Clinical",
+   "task": "ARAT grasp: 2.5 cm block",
+   "skills": [
+    "grasp",
+    "lift"
+   ],
+   "objects": "block",
+   "needs": [
+    "rigid",
+    "precision"
+   ],
+   "sources": [
+    "ARAT"
+   ],
+   "demo": "cube25",
+   "status": "demo",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 198,
+   "domain": "Clinical",
+   "task": "ARAT grasp: 5 cm block",
+   "skills": [
+    "grasp",
+    "lift"
+   ],
+   "objects": "block",
+   "needs": [
+    "rigid"
+   ],
+   "sources": [
+    "ARAT"
+   ],
+   "demo": "stack",
+   "status": "demo",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 199,
+   "domain": "Clinical",
+   "task": "ARAT grasp: 7.5 cm block",
+   "skills": [
+    "grasp",
+    "lift"
+   ],
+   "objects": "block",
+   "needs": [
+    "rigid"
+   ],
+   "sources": [
+    "ARAT"
+   ],
+   "demo": "",
+   "status": "ready",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 200,
+   "domain": "Clinical",
+   "task": "ARAT grasp: cricket ball",
+   "skills": [
+    "grasp",
+    "lift"
+   ],
+   "objects": "ball",
+   "needs": [
+    "rigid"
+   ],
+   "sources": [
+    "ARAT"
+   ],
+   "demo": "ball",
+   "status": "demo",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 201,
+   "domain": "Clinical",
+   "task": "ARAT grasp: sharpening stone",
+   "skills": [
+    "grasp",
+    "lift"
+   ],
+   "objects": "stone",
+   "needs": [
+    "rigid"
+   ],
+   "sources": [
+    "ARAT"
+   ],
+   "demo": "box",
+   "status": "demo",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 202,
+   "domain": "Clinical",
+   "task": "ARAT grip: pour water glass to glass",
+   "skills": [
+    "pour"
+   ],
+   "objects": "glasses",
+   "needs": [
+    "fluid"
+   ],
+   "sources": [
+    "ARAT"
+   ],
+   "demo": "",
+   "status": "later",
+   "gate": "fluids"
+  },
+  {
+   "id": 203,
+   "domain": "Clinical",
+   "task": "ARAT grip: 2.25 cm tube",
+   "skills": [
+    "grasp",
+    "place"
+   ],
+   "objects": "tube",
+   "needs": [
+    "rigid"
+   ],
+   "sources": [
+    "ARAT"
+   ],
+   "demo": "bottle",
+   "status": "demo",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 204,
+   "domain": "Clinical",
+   "task": "ARAT grip: 1 cm tube",
+   "skills": [
+    "grasp",
+    "place"
+   ],
+   "objects": "tube",
+   "needs": [
+    "rigid",
+    "precision"
+   ],
+   "sources": [
+    "ARAT"
+   ],
+   "demo": "",
+   "status": "ready",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 205,
+   "domain": "Clinical",
+   "task": "ARAT grip: washer over a bolt",
+   "skills": [
+    "precision place"
+   ],
+   "objects": "washer, bolt",
+   "needs": [
+    "rigid",
+    "precision"
+   ],
+   "sources": [
+    "ARAT"
+   ],
+   "demo": "",
+   "status": "ready",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 206,
+   "domain": "Clinical",
+   "task": "ARAT pinch: 6 mm ball bearing, six variants",
+   "skills": [
+    "pinch"
+   ],
+   "objects": "bearing",
+   "needs": [
+    "rigid",
+    "precision"
+   ],
+   "sources": [
+    "ARAT"
+   ],
+   "demo": "",
+   "status": "ready",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 207,
+   "domain": "Clinical",
+   "task": "ARAT pinch: marble, six variants",
+   "skills": [
+    "pinch"
+   ],
+   "objects": "marble",
+   "needs": [
+    "rigid",
+    "precision"
+   ],
+   "sources": [
+    "ARAT"
+   ],
+   "demo": "",
+   "status": "ready",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 208,
+   "domain": "Clinical",
+   "task": "ARAT gross: hand behind head, on head, to mouth",
+   "skills": [
+    "arm motion"
+   ],
+   "objects": "none",
+   "needs": [
+    "rigid"
+   ],
+   "sources": [
+    "ARAT"
+   ],
+   "demo": "",
+   "status": "ready",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 209,
+   "domain": "Beyond",
+   "task": "Cage an object without touching it",
+   "skills": [
+    "cage"
+   ],
+   "objects": "any",
+   "needs": [
+    "rigid"
+   ],
+   "sources": [
+    "this design"
+   ],
+   "demo": "",
+   "status": "bench",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 210,
+   "domain": "Beyond",
+   "task": "Move many objects at once",
+   "skills": [
+    "parallel"
+   ],
+   "objects": "many",
+   "needs": [
+    "rigid"
+   ],
+   "sources": [
+    "this design"
+   ],
+   "demo": "",
+   "status": "bench",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 211,
+   "domain": "Beyond",
+   "task": "Reach through an 8 mm hole",
+   "skills": [
+    "thin reach"
+   ],
+   "objects": "box with hole",
+   "needs": [
+    "rigid"
+   ],
+   "sources": [
+    "this design"
+   ],
+   "demo": "",
+   "status": "bench",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 212,
+   "domain": "Beyond",
+   "task": "Do three jobs at once with one effector",
+   "skills": [
+    "split"
+   ],
+   "objects": "parts",
+   "needs": [
+    "rigid"
+   ],
+   "sources": [
+    "this design"
+   ],
+   "demo": "",
+   "status": "ready",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 213,
+   "domain": "Beyond",
+   "task": "Lift a load by wrapping it",
+   "skills": [
+    "wrap"
+   ],
+   "objects": "bottle, bar",
+   "needs": [
+    "rigid"
+   ],
+   "sources": [
+    "this design"
+   ],
+   "demo": "",
+   "status": "bench",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 214,
+   "domain": "Beyond",
+   "task": "Keep working after losing three tendrils",
+   "skills": [
+    "redundancy"
+   ],
+   "objects": "any",
+   "needs": [
+    "rigid"
+   ],
+   "sources": [
+    "this design"
+   ],
+   "demo": "",
+   "status": "ready",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 215,
+   "domain": "Beyond",
+   "task": "Catch a dropped object",
+   "skills": [
+    "dynamic cage"
+   ],
+   "objects": "ball",
+   "needs": [
+    "rigid"
+   ],
+   "sources": [
+    "this design"
+   ],
+   "demo": "",
+   "status": "ready",
+   "gate": "rigid physics"
+  },
+  {
+   "id": 216,
+   "domain": "Beyond",
+   "task": "Hold a shape indefinitely at zero power",
+   "skills": [
+    "jam"
+   ],
+   "objects": "any",
+   "needs": [
+    "rigid"
+   ],
+   "sources": [
+    "this design"
+   ],
+   "demo": "",
+   "status": "bench",
+   "gate": "rigid physics"
+  }
+ ]
+}

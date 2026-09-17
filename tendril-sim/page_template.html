@@ -1,0 +1,105 @@
+<title>Tendril Sim</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root{--bg:#ECEEF1;--panel:#F5F6F8;--ink:#1A1F26;--ink2:#4B535E;--mute:#79818D;--rule:#C9CED6;--rule2:#AEB5BF;--teal:#1E9E93;--amber:#D9922A;--blue:#3E6FE0;--red:#B23A2E;--good:#1E9E93;--bad:#B23A2E}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#14171C;--panel:#1A1E24;--ink:#E6E9EE;--ink2:#B4BAC4;--mute:#7E8794;--rule:#2A303A;--rule2:#3A4250;--teal:#3FBFB3;--amber:#F0A93A;--blue:#6D93F5;--red:#E06A5E;--good:#3FBFB3;--bad:#E06A5E}}
+:root[data-theme="dark"]{--bg:#14171C;--panel:#1A1E24;--ink:#E6E9EE;--ink2:#B4BAC4;--mute:#7E8794;--rule:#2A303A;--rule2:#3A4250;--teal:#3FBFB3;--amber:#F0A93A;--blue:#6D93F5;--red:#E06A5E;--good:#3FBFB3;--bad:#E06A5E}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Barlow,"Helvetica Neue",Arial,sans-serif;font-size:15px;line-height:1.5}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px 40px}
+.bar{display:flex;align-items:baseline;gap:10px 24px;flex-wrap:wrap;padding-block:18px 12px;border-bottom:1px solid var(--rule)}
+h1{font-family:"Barlow Condensed",Barlow,sans-serif;font-weight:600;font-size:30px;letter-spacing:.03em;text-transform:uppercase;margin:0;line-height:1;text-wrap:balance}
+.rev{font-family:"JetBrains Mono",ui-monospace,Menlo,monospace;font-size:11px;color:var(--mute);letter-spacing:.06em}
+.sub{color:var(--ink2);flex:1 1 320px;max-width:64ch;margin:0}
+h2{font-family:"Barlow Condensed",Barlow,sans-serif;font-size:14px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin:34px 0 12px;padding-bottom:6px;border-bottom:1px solid var(--rule)}
+p{max-width:70ch}
+.strip{display:grid;grid-template-columns:repeat(6,1fr);border:1px solid var(--rule);margin-top:16px}
+.strip>div{padding:10px 12px;border-right:1px solid var(--rule)} .strip>div:last-child{border-right:0}
+.k{font-family:"Barlow Condensed",Barlow,sans-serif;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
+.v{font-family:"JetBrains Mono",ui-monospace,Menlo,monospace;font-size:22px;font-variant-numeric:tabular-nums;line-height:1.2}
+.v .u{font-size:12px;color:var(--mute);margin-left:4px;font-family:Barlow,sans-serif}
+.v.good{color:var(--good)}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th{font-family:"Barlow Condensed",Barlow,sans-serif;font-weight:600;letter-spacing:.1em;text-transform:uppercase;font-size:11px;color:var(--mute);text-align:left;padding:6px 10px 6px 0;border-bottom:1px solid var(--rule2)}
+td{padding:7px 10px 7px 0;border-bottom:1px solid var(--rule);vertical-align:top}
+td.n{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:12.5px;font-variant-numeric:tabular-nums;white-space:nowrap}
+td.m{color:var(--mute)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.task{border:1px solid var(--rule);border-left:3px solid var(--rule2);padding:12px 14px;margin-top:12px;background:var(--panel)}
+.task.pass{border-left-color:var(--good)} .task.fail{border-left-color:var(--bad)}
+.task header{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.task h3{font-family:"Barlow Condensed",Barlow,sans-serif;font-weight:600;font-size:18px;margin:0;letter-spacing:.02em}
+.pill{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:11px;letter-spacing:.1em;padding:2px 7px;border-radius:2px;color:#fff;background:var(--bad)}
+.pass .pill{background:var(--good)}
+.lvl{font-family:"Barlow Condensed",Barlow,sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-left:auto}
+.lvl.beyond{color:var(--amber)}
+.frames{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 0}
+.frames figure{margin:0} .frames img{display:block;width:100%;height:auto;border:1px solid var(--rule)}
+.frames figcaption{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);margin-top:4px}
+.metric{margin:6px 0 2px;font-size:14px} .metric .val{font-family:"JetBrains Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums;margin-left:8px}
+.note{margin:0;color:var(--ink2);font-size:13.5px}
+.callout{border-left:3px solid var(--amber);padding:8px 14px;background:var(--panel);margin:12px 0;max-width:76ch}
+code{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:12.5px;background:var(--panel);padding:1px 5px;border:1px solid var(--rule);border-radius:2px}
+@media (max-width:820px){.strip{grid-template-columns:repeat(3,1fr)}.strip>div:nth-child(3){border-right:0}.strip>div:nth-child(n+4){border-top:1px solid var(--rule)}.two{grid-template-columns:1fr}.frames{grid-template-columns:1fr}}
+</style>
+<div class="wrap">
+  <header class="bar">
+    <h1>Tendril Sim</h1>
+    <span class="rev">REV E · MUJOCO 3.13 · {{DATE}} · SCRIPTED CONTROL, NO LEARNING</span>
+    <p class="sub">Rev E rebuilt as something a factory could make, one moulded bead on a spring rod, then measured in simulation against a task list instead of animated.</p>
+  </header>
+
+  <div class="strip">
+    <div><div class="k">Tasks passed</div><div class="v good">{{PASSED}}<span class="u">of {{TOTAL}}</span></div></div>
+    <div><div class="k">Tendrils modelled</div><div class="v">8<span class="u">of 24</span></div></div>
+    <div><div class="k">Beads per tendril</div><div class="v">14</div></div>
+    <div><div class="k">Reach</div><div class="v">168<span class="u">mm</span></div></div>
+    <div><div class="k">Cable budget</div><div class="v">100<span class="u">N</span></div></div>
+    <div><div class="k">Sim speed</div><div class="v">2.5<span class="u">× real time</span></div></div>
+  </div>
+
+  <h2>What changed: Rev E is one part, repeated</h2>
+  <div class="two">
+    <div>
+      <p>The previous segment had eleven parts, a chip and two locks each. Rev E throws that away. A tendril is fourteen identical moulded beads threaded on a 1.4 mm superelastic nitinol rod, three cables through the beads to a motor cartridge at the base, and one vacuum sleeve over the outside. Nothing electronic lives in the tendril. Shape is known from the cable lengths at the spools, force from the cable tensions, contact from a camera in the base looking up and the skin only at the tip.</p>
+      <p><b>How it holds itself, in three regimes, all measured below.</b> The rod is the skeleton: it carries the tendril's own weight with almost no sag and spreads any bend evenly along the length. The cables are the muscle: pull one and the rod bends toward it, hold the cable and the shape holds. The sleeve is the brake: pull a vacuum and thin polymer layers inside it jam together, so the tendril keeps its shape with the cables slack and the motors off. Holding a wrap costs nothing because the spool motors are worm drives that cannot be back-driven.</p>
+      <p>Strength comes from bundling and wrapping, not from a fatter cable. Wrap a bar and the load goes into cable tension and friction, where the chain is strongest.</p>
+    </div>
+    <div>
+      <table>
+        <tr><th>Part</th><th>Material</th><th>Per tendril</th><th>Per bundle</th></tr>
+        <tr><td>Bead, 12 mm hex, 12 mm pitch</td><td class="m">glass-filled nylon, moulded</td><td class="n">14</td><td class="n">336</td></tr>
+        <tr><td>Backbone rod</td><td class="m">1.4 mm superelastic nitinol</td><td class="n">1</td><td class="n">24</td></tr>
+        <tr><td>Cable</td><td class="m">1.0 mm braided UHMWPE, 1500 N break</td><td class="n">3</td><td class="n">72</td></tr>
+        <tr><td>Jamming sleeve</td><td class="m">60 layers of 50 µm polyester in a TPU bladder</td><td class="n">1</td><td class="n">24</td></tr>
+        <tr><td>Tip</td><td class="m">TPU overmould, suction cup, gel pad</td><td class="n">1</td><td class="n">24</td></tr>
+        <tr><td>Spool cartridge</td><td class="m">3 × 8 mm motors, worm drives, tension sensors, valve</td><td class="n">1</td><td class="n">24</td></tr>
+      </table>
+      <p class="note" style="margin-top:8px">Six part numbers. The bead is the only custom moulding. Everything in the tendril is passive, so a torn tendril is unplugged and replaced, not repaired.</p>
+    </div>
+  </div>
+
+  <h2>The task list, taken from how hands are actually tested</h2>
+  <p>Clinicians already have validated lists of what a human hand must do. Three of them together give 52 timed tasks with fixed objects, and they are the human-level benchmark here. The beyond-human tasks are the ones from earlier in this design, and the robotics benchmarks are where the same scenes already exist in simulation with thousands of demonstrations.</p>
+  <table>
+    <tr><th>Source</th><th>Tasks</th><th>What it contains</th><th>Status here</th></tr>
+    <tr><td>Southampton Hand Assessment Procedure, SHAP</td><td class="n">26</td><td>12 abstract grips on light and heavy objects, 14 daily tasks: coins, button board, food cutting, page turning, jar lid, jug and carton pouring, heavy and light lift, tray, key, zip, screw, door handle</td><td class="m">pinch and hold covered; lifts and wraps covered; key, zip, pouring not yet</td></tr>
+    <tr><td>Jebsen-Taylor Hand Function Test</td><td class="n">7</td><td>writing, card turning, small objects, simulated feeding, stacking checkers, large light cans, large heavy cans</td><td class="m">small-object pinch covered</td></tr>
+    <tr><td>Action Research Arm Test, ARAT</td><td class="n">19</td><td>grasp blocks of four sizes, ball, stone; grip tubes and a washer; six pinches of a marble and a ball bearing; three gross arm motions</td><td class="m">ball grasp covered by caging; block sizes next</td></tr>
+    <tr><td>Beyond-human, from this design</td><td class="n">8</td><td>cage with no contact, many objects at once, through an 8 mm hole, three jobs at once, trunk lift, lose tendrils and continue, wrap and hold, catch</td><td class="m">cage, many at once, hole, wrap covered</td></tr>
+    <tr><td>RLBench</td><td class="n">100</td><td>hand-designed tabletop tasks in CoppeliaSim, from reaching to multi-stage</td><td class="m">scene library to port</td></tr>
+    <tr><td>LIBERO</td><td class="n">130</td><td>language-conditioned tabletop tasks in MuJoCo-based robosuite</td><td class="m">same physics engine, closest fit</td></tr>
+    <tr><td>RoboCasa</td><td class="n">100</td><td>kitchen tasks in MuJoCo with thousands of objects</td><td class="m">household coverage</td></tr>
+    <tr><td>Open X-Embodiment</td><td class="n">160k</td><td>22 robots, 527 skills, real-robot demonstrations</td><td class="m">the data a policy would learn from</td></tr>
+  </table>
+
+  <h2>Simulation results, {{PASSED}} of {{TOTAL}} passed</h2>
+  <p>Every task below runs in MuJoCo with the model in <code>tendril-sim/sim.py</code> and the scripts in <code>tendril-sim/tasks.py</code>. Each has a pass threshold set before the run. Frames are rendered from the simulation, not drawn.</p>
+  {{TASKS}}
+
+  <h2>What this shows and what it does not</h2>
+  <div class="callout"><b>It shows</b> that a chain of moulded beads on a spring rod, driven by three cables and a vacuum sleeve, holds itself and a load, places its tip within a few millimetres, pinches, wraps, cages, threads and acts in parallel, with forces and stiffnesses taken from real materials.</div>
+  <div class="callout"><b>It does not show</b> learned behaviour. Every controller is a script written for its scene. The next step is exactly what LIBERO and RoboCasa exist for: wrap this model as an environment, collect demonstrations, and train a policy that produces these actions from observations.</div>
+  <p>Known limits of the current model, stated so they can be fixed in order. Eight tendrils of 168 mm stand in for twenty-four of 220 mm. Each tendril is one bending section, so it can wrap but cannot lift a wrapped object without the base moving; a second cable set ending mid-length fixes that. The jamming stiffness is set at fifteen times the rod, a literature figure, not a measured one. Bundling by twisting tendrils together is not yet scripted. And the parallel task went through three versions before it passed: dragging cubes along the floor failed because the tips plough against floor friction, toppling pegs failed because the descending arc pins them instead of striking them, and the version kept here hovers eight tips over eight pads. All three are recorded rather than hidden.</p>
+</div>

@@ -1,0 +1,37 @@
+WARNING: Attach conflict when attaching 'allegro_right' to 'ur5e', policy is 'warning'
+impratio: parent has 1 (default), child has 10, keeping parent value
+cone: parent has 0 (default), child has 1, keeping parent value
+
+/Users/skyler/Projects/research/Robotics/tendril-sim/prototypes.py:83: UserWarning: Attach conflict when attaching 'allegro_right' to 'ur5e', policy is 'warning'
+impratio: parent has 1 (default), child has 10, keeping parent value
+cone: parent has 0 (default), child has 1, keeping parent value
+  m = arm.compile(); d = mujoco.MjData(m); mujoco.mj_forward(m, d)
+WARNING: Attach conflict when attaching 'allegro_right' to 'ur5e', policy is 'warning'
+impratio: parent has 1 (default), child has 10, keeping parent value
+cone: parent has 0 (default), child has 1, keeping parent value
+
+WARNING: Attach conflict when attaching 'allegro_right' to 'ur5e', policy is 'warning'
+impratio: parent has 1 (default), child has 10, keeping parent value
+cone: parent has 0 (default), child has 1, keeping parent value
+
+WARNING: Attach conflict when attaching 'allegro_right' to 'ur5e', policy is 'warning'
+impratio: parent has 1 (default), child has 10, keeping parent value
+cone: parent has 0 (default), child has 1, keeping parent value
+
+/Users/skyler/Projects/research/Robotics/tendril-sim/prototypes.py:105: UserWarning: Attach conflict when attaching 'allegro_right' to 'ur5e', policy is 'warning'
+impratio: parent has 1 (default), child has 10, keeping parent value
+cone: parent has 0 (default), child has 1, keeping parent value
+  arm = mujoco.MjSpec.from_file(os.path.join(UR, "ur5e.xml")); attach_hand(arm, hand, hand + "/"); m = arm.compile(); d = mujoco.MjData(m)
+WARNING: Attach conflict when attaching 'allegro_right' to 'ur5e', policy is 'warning'
+impratio: parent has 1 (default), child has 10, keeping parent value
+cone: parent has 0 (default), child has 1, keeping parent value
+
+{
+ "allegro": {
+  "contacts": 0,
+  "force_N": 0.0,
+  "lift_mm": 0.0,
+  "slip_mm": 251.9,
+  "held": false
+ }
+}

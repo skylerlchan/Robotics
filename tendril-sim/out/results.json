@@ -1,0 +1,97 @@
+[
+ {
+  "name": "Hold a bent shape with 50 g hung on the tip",
+  "level": "human-level",
+  "metric": "tip sag under the load, sleeve jammed and cables slack",
+  "value": 2.5262663784595962,
+  "unit": "mm",
+  "passed": true,
+  "note": "cables holding the load: 10.2 mm sag; jamming with cables slack first lets the backbone relax the tip +8.0 mm, then the load sags it 2.5 mm; unjammed and slack it drops 68 mm",
+  "frames": [
+   "hold_0.png",
+   "hold_1.png",
+   "hold_2.png"
+  ]
+ },
+ {
+  "name": "Place the tip on a point in space",
+  "level": "human-level",
+  "metric": "final tip error after 8 corrections",
+  "value": 2.5945657974019025,
+  "unit": "mm",
+  "passed": true,
+  "note": "target [139, 69, 79] mm, commanded bend 142 deg to reach a 120 deg arc, cable stretch corrected in the loop",
+  "frames": [
+   "reach_0.png",
+   "reach_1.png"
+  ]
+ },
+ {
+  "name": "Pinch a 20 mm cube and hold it when its support is removed",
+  "level": "human-level",
+  "metric": "cube height kept after the pedestal drops",
+  "value": 114.28659187332072,
+  "unit": "mm above the base",
+  "passed": true,
+  "note": "2 tendril contacts, 0.66 N normal force at the pinch, cube started at 145 mm",
+  "frames": [
+   "pinch_0.png",
+   "pinch_1.png",
+   "pinch_2.png"
+  ]
+ },
+ {
+  "name": "Wrap a 60 mm bar and resist a 2 N pull on the tip",
+  "level": "human-level",
+  "metric": "tip moved under the pull",
+  "value": 0.08023173087424587,
+  "unit": "mm",
+  "passed": true,
+  "note": "7 of 14 vertebrae in contact after the wrap, 24.9 N total normal force; 6 still in contact under the pull; cables locked, sleeve jammed",
+  "frames": [
+   "wrap_0.png",
+   "wrap_1.png",
+   "wrap_2.png"
+  ]
+ },
+ {
+  "name": "Cage a ball and hold it against a 1 N push",
+  "level": "beyond-human",
+  "metric": "ball displacement inside the cage",
+  "value": 2.946260473500994,
+  "unit": "mm",
+  "passed": true,
+  "note": "the same push on the ball alone rolls it off the base",
+  "frames": [
+   "cage_0.png",
+   "cage_1.png",
+   "cage_2.png"
+  ]
+ },
+ {
+  "name": "Hover eight tips over eight floor pads at once",
+  "level": "beyond-human",
+  "metric": "worst tip error of the eight",
+  "value": 4.313450102475589,
+  "unit": "mm",
+  "passed": true,
+  "note": "errors 4, 4, 4, 4, 4, 4, 4, 4 mm; tips held 12 mm above pads 24 mm wide at 152 mm from the centre, on the reachable surface of a 170 deg arc, all eight tendrils controlled in the same loop",
+  "frames": [
+   "parallel_0.png",
+   "parallel_1.png"
+  ]
+ },
+ {
+  "name": "Thread the tip through a 22 mm ring",
+  "level": "beyond-human",
+  "metric": "tip miss from the ring centre",
+  "value": 1.853610508911011,
+  "unit": "mm",
+  "passed": true,
+  "note": "the ring sits on the reachable arc of tendril 0, tilted to the arc tangent; drawn as a target with no contact",
+  "frames": [
+   "ring_0.png",
+   "ring_1.png"
+  ]
+ }
+]

@@ -1,0 +1,5 @@
+<mujoco model="suction"><compiler angle="radian"/><worldbody><body name="mount">
+<geom type="cylinder" size="0.03 0.02" pos="0 0 0.02" rgba="0.36 0.37 0.40 1" mass="0.3"/>
+<geom type="cylinder" size="0.012 0.05" pos="0 0 0.09" rgba="0.55 0.52 0.50 1" mass="0.1"/>
+<geom name="cup" type="cylinder" size="0.022 0.008" pos="0 0 0.148" rgba="0.12 0.62 0.58 1" mass="0.02" condim="4" friction="1.2 0.02 0.001"/>
+<site name="cup_site" pos="0 0 0.156" size="0.003" rgba="0 0 0 0"/></body></worldbody></mujoco>

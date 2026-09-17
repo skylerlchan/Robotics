@@ -1,0 +1,75 @@
+# SO-101 arm pair — Aloha Mini leader + follower, both plugged straight into this Mac.
+# Every script in so101/ reads this file. Tune here, not in the code.
+
+[env]
+# conda env lerobot_alohamini (Python 3.12, lerobot 0.6.1)
+prefix = "~/miniforge3/envs/lerobot_alohamini"
+
+[leader]
+# USB serial of the CH343 board (VID 0x1A86 PID 0x55D3) -> /dev/cu.usbmodem<serial>1
+# Identified 2026-09-17: 4.9 V USB-powered bus, servo IDs 1-6, no base/lift.
+serial = "5AA9024340"
+# id used by the stock lerobot path for its calibration file:
+#   ~/.cache/huggingface/lerobot/calibration/teleoperators/so101_leader/<id>.json
+lerobot_id = "am_leader"
+
+[follower]
+# Identified 2026-09-17: 12.0 V bus, servo IDs 1-6 only (this is a plain SO-101
+# follower arm — no mobile base, so IDs 8/9/10 and lift 11 are absent).
+serial = "5AAF262710"
+# ~/.cache/huggingface/lerobot/calibration/robots/so101_follower/<id>.json
+lerobot_id = "am_follower"
+
+# ── raw-tick fast path (teleop.py) ──────────────────────────────────────────
+# Mirrors Present_Position ticks leader -> follower with no calibration files.
+[raw]
+hz = 50
+ramp = 6.0          # seconds of soft start from the follower's current pose
+max_step = 40       # max follower move per cycle, ticks (40 ≈ 3.5°)
+accel = 20          # servo Acceleration register, 0-254 (lower = gentler)
+speed = 800         # servo Goal_Velocity cap, ticks/s (800 ≈ 70°/s)
+
+# --fast overrides (teleop.py --fast)
+[raw.fast]
+hz = 100
+max_step = 80
+accel = 60
+speed = 3000
+
+# Per-joint mapping. Modes:
+#   direct  — follower = 2048 + sign*(leader-2048)*scale + offset   (the proven 1:1 path)
+#   limits  — map the leader's [Min,Max]_Position_Limit onto the follower's, linearly.
+#             Use this when the two servos were calibrated to different ranges.
+# Omitted joints default to mode="direct", sign=1, scale=1.0, offset=0.
+[raw.joints.gripper]
+# Leader gripper range is 1686-2945 (span 1259), follower is 2024-3559 (span 1535)
+# — a plain tick copy would sit the follower at its hard-closed stop, so map ranges.
+mode = "limits"
+
+# Conservative software clamp, degrees from centre. Intersected at runtime with
+# each follower servo's own Min/Max_Position_Limit; the tighter bound wins.
+# Derived from the SO-101 MJCF joint ranges.
+[raw.clamp_deg]
+shoulder_pan = [-110, 110]
+shoulder_lift = [-100, 100]
+elbow_flex = [-97, 97]
+wrist_flex = [-95, 95]
+wrist_roll = [-157, 157]
+gripper = [-10, 100]
+
+# ── stock lerobot path (*.sh) ───────────────────────────────────────────────
+[lerobot]
+robot_type = "so101_follower"
+teleop_type = "so101_leader"
+arm_profile = "so-arm-5dof"   # IDs 1-6, gripper normalised 0-100
+fps = 30
+
+[lerobot.record]
+repo_id = "sc8742/so101_am"   # lerobot-record dataset target
+single_task = "pick up the object"
+episode_time_s = 30
+reset_time_s = 10
+num_episodes = 10
+# Add a camera here once one is mounted, e.g.
+#   cameras = "{ front: {type: opencv, index_or_path: 0, width: 1280, height: 720, fps: 30}}"
+cameras = ""

@@ -1,0 +1,51 @@
+{
+ "2f85": {
+  "contacts": 5,
+  "force_N": 367.68,
+  "lift_mm": 135.3,
+  "slip_mm": 14.3,
+  "held": true
+ },
+ "suction": {
+  "contacts": 1,
+  "force_N": 146.72,
+  "lift_mm": 142.3,
+  "slip_mm": 8.0,
+  "held": true
+ },
+ "leap": {
+  "contacts": 0,
+  "force_N": 0.0,
+  "lift_mm": 0.0,
+  "slip_mm": 2385.8,
+  "held": false
+ },
+ "allegro": {
+  "contacts": 0,
+  "force_N": 0.0,
+  "lift_mm": -0.1,
+  "slip_mm": 244.9,
+  "held": false
+ },
+ "shadow": {
+  "contacts": 0,
+  "force_N": 0.0,
+  "lift_mm": -0.0,
+  "slip_mm": 150.6,
+  "held": false
+ },
+ "fist6": {
+  "contacts": 7,
+  "force_N": 56.6,
+  "lift_mm": 149.4,
+  "slip_mm": 1.0,
+  "held": true
+ },
+ "bundle24": {
+  "contacts": 25,
+  "force_N": 13.58,
+  "lift_mm": 154.5,
+  "slip_mm": 12.2,
+  "held": true
+ }
+}

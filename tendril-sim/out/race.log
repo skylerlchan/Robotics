@@ -1,0 +1,115 @@
+WARNING: Attach conflict when attaching 'robotiq_2f85' to 'ur5e', policy is 'warning'
+impratio: parent has 1 (default), child has 10, keeping parent value
+cone: parent has 0 (default), child has 1, keeping parent value
+
+/Users/skyler/Projects/research/Robotics/tendril-sim/prototypes.py:83: UserWarning: Attach conflict when attaching 'robotiq_2f85' to 'ur5e', policy is 'warning'
+impratio: parent has 1 (default), child has 10, keeping parent value
+cone: parent has 0 (default), child has 1, keeping parent value
+  m = arm.compile(); d = mujoco.MjData(m); mujoco.mj_forward(m, d)
+WARNING: Attach conflict when attaching 'robotiq_2f85' to 'ur5e', policy is 'warning'
+impratio: parent has 1 (default), child has 10, keeping parent value
+cone: parent has 0 (default), child has 1, keeping parent value
+
+WARNING: Attach conflict when attaching 'leap_rh' to 'ur5e', policy is 'warning'
+impratio: parent has 1 (default), child has 100, keeping parent value
+cone: parent has 0 (default), child has 1, keeping parent value
+
+/Users/skyler/Projects/research/Robotics/tendril-sim/prototypes.py:83: UserWarning: Attach conflict when attaching 'leap_rh' to 'ur5e', policy is 'warning'
+impratio: parent has 1 (default), child has 100, keeping parent value
+cone: parent has 0 (default), child has 1, keeping parent value
+  m = arm.compile(); d = mujoco.MjData(m); mujoco.mj_forward(m, d)
+WARNING: Attach conflict when attaching 'leap_rh' to 'ur5e', policy is 'warning'
+impratio: parent has 1 (default), child has 100, keeping parent value
+cone: parent has 0 (default), child has 1, keeping parent value
+
+WARNING: Attach conflict when attaching 'allegro_right' to 'ur5e', policy is 'warning'
+impratio: parent has 1 (default), child has 10, keeping parent value
+cone: parent has 0 (default), child has 1, keeping parent value
+
+/Users/skyler/Projects/research/Robotics/tendril-sim/prototypes.py:83: UserWarning: Attach conflict when attaching 'allegro_right' to 'ur5e', policy is 'warning'
+impratio: parent has 1 (default), child has 10, keeping parent value
+cone: parent has 0 (default), child has 1, keeping parent value
+  m = arm.compile(); d = mujoco.MjData(m); mujoco.mj_forward(m, d)
+WARNING: Attach conflict when attaching 'allegro_right' to 'ur5e', policy is 'warning'
+impratio: parent has 1 (default), child has 10, keeping parent value
+cone: parent has 0 (default), child has 1, keeping parent value
+
+WARNING: Attach conflict when attaching 'right_shadow_hand' to 'ur5e', policy is 'warning'
+impratio: parent has 1 (default), child has 10, keeping parent value
+cone: parent has 0 (default), child has 1, keeping parent value
+
+/Users/skyler/Projects/research/Robotics/tendril-sim/prototypes.py:83: UserWarning: Attach conflict when attaching 'right_shadow_hand' to 'ur5e', policy is 'warning'
+impratio: parent has 1 (default), child has 10, keeping parent value
+cone: parent has 0 (default), child has 1, keeping parent value
+  m = arm.compile(); d = mujoco.MjData(m); mujoco.mj_forward(m, d)
+WARNING: Attach conflict when attaching 'right_shadow_hand' to 'ur5e', policy is 'warning'
+impratio: parent has 1 (default), child has 10, keeping parent value
+cone: parent has 0 (default), child has 1, keeping parent value
+
+WARNING: Attach conflict when attaching 'robotiq_2f85' to 'ur5e', policy is 'warning'
+impratio: parent has 1 (default), child has 10, keeping parent value
+cone: parent has 0 (default), child has 1, keeping parent value
+
+WARNING: Attach conflict when attaching 'leap_rh' to 'ur5e', policy is 'warning'
+impratio: parent has 1 (default), child has 100, keeping parent value
+cone: parent has 0 (default), child has 1, keeping parent value
+
+WARNING: Attach conflict when attaching 'allegro_right' to 'ur5e', policy is 'warning'
+impratio: parent has 1 (default), child has 10, keeping parent value
+cone: parent has 0 (default), child has 1, keeping parent value
+
+WARNING: Attach conflict when attaching 'right_shadow_hand' to 'ur5e', policy is 'warning'
+impratio: parent has 1 (default), child has 10, keeping parent value
+cone: parent has 0 (default), child has 1, keeping parent value
+
+{
+ "2f85": {
+  "contacts": 4,
+  "force_N": 437.31,
+  "lift_mm": -25.0,
+  "slip_mm": 460.2,
+  "held": false
+ },
+ "suction": {
+  "contacts": 1,
+  "force_N": 147.95,
+  "lift_mm": 142.3,
+  "slip_mm": 7.7,
+  "held": true
+ },
+ "leap": {
+  "contacts": 0,
+  "force_N": 0.0,
+  "lift_mm": 0.0,
+  "slip_mm": 805.9,
+  "held": false
+ },
+ "allegro": {
+  "contacts": 2,
+  "force_N": 18.66,
+  "lift_mm": -38.9,
+  "slip_mm": 247.7,
+  "held": false
+ },
+ "shadow": {
+  "contacts": 0,
+  "force_N": 0.0,
+  "lift_mm": 0.0,
+  "slip_mm": 603.0,
+  "held": false
+ },
+ "fist6": {
+  "contacts": 8,
+  "force_N": 57.91,
+  "lift_mm": 149.0,
+  "slip_mm": 0.9,
+  "held": true
+ },
+ "bundle24": {
+  "contacts": 25,
+  "force_N": 13.53,
+  "lift_mm": 154.0,
+  "slip_mm": 10.2,
+  "held": true
+ }
+}

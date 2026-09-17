@@ -1,0 +1,248 @@
+[
+ {
+  "seed": 0,
+  "mode": "oracle",
+  "level": "flat",
+  "passed": false,
+  "start_coverage": 0.998,
+  "corner_error_mm": 0.5,
+  "free_edge_right": null,
+  "smoothed_coverage": 0.998,
+  "drags": 0,
+  "fold1": false,
+  "fold2": false,
+  "size_mm": [
+   269,
+   141
+  ],
+  "note": "first fold failed: 269 x 141 mm",
+  "steps": [
+   {
+    "step": "fold1",
+    "ok": false,
+    "coverage": 0.178,
+    "why": "towel is now 269 by 141 mm, wanted a short side near 200"
+   }
+  ],
+  "frames": [
+   "lau_flat_oracle_0_0.png",
+   "lau_flat_oracle_0_1.png",
+   "lau_flat_oracle_0_2.png"
+  ],
+  "seconds": 13.4,
+  "sim_seconds": 17.0
+ },
+ {
+  "seed": 1,
+  "mode": "oracle",
+  "level": "flat",
+  "passed": false,
+  "start_coverage": 0.998,
+  "corner_error_mm": 0.4,
+  "free_edge_right": null,
+  "smoothed_coverage": 0.998,
+  "drags": 0,
+  "fold1": false,
+  "fold2": false,
+  "size_mm": [
+   414,
+   125
+  ],
+  "note": "first fold failed: 414 x 125 mm",
+  "steps": [
+   {
+    "step": "fold1",
+    "ok": false,
+    "coverage": 0.249,
+    "why": "towel is now 414 by 125 mm, wanted a short side near 200"
+   }
+  ],
+  "frames": [],
+  "seconds": 13.3,
+  "sim_seconds": 17.1
+ },
+ {
+  "seed": 2,
+  "mode": "oracle",
+  "level": "flat",
+  "passed": false,
+  "start_coverage": 0.997,
+  "corner_error_mm": 0.6,
+  "free_edge_right": null,
+  "smoothed_coverage": 0.997,
+  "drags": 0,
+  "fold1": false,
+  "fold2": false,
+  "size_mm": [
+   291,
+   172
+  ],
+  "note": "first fold failed: 291 x 172 mm",
+  "steps": [
+   {
+    "step": "fold1",
+    "ok": false,
+    "coverage": 0.248,
+    "why": "towel is now 291 by 172 mm, wanted a short side near 200"
+   }
+  ],
+  "frames": [],
+  "seconds": 13.9,
+  "sim_seconds": 17.2
+ },
+ {
+  "seed": 3,
+  "mode": "oracle",
+  "level": "flat",
+  "passed": false,
+  "start_coverage": 0.998,
+  "corner_error_mm": 0.4,
+  "free_edge_right": true,
+  "smoothed_coverage": 0.998,
+  "drags": 0,
+  "fold1": true,
+  "fold2": false,
+  "size_mm": [
+   153,
+   145
+  ],
+  "note": "153 x 145 mm",
+  "steps": [
+   {
+    "step": "fold1",
+    "ok": true,
+    "coverage": 0.332,
+    "why": "towel is now 402 by 168 mm, wanted a short side near 200"
+   },
+   {
+    "step": "fold2",
+    "ok": false,
+    "coverage": 0.104,
+    "why": "towel is now 153 by 145 mm, wanted a short side near 100"
+   }
+  ],
+  "frames": [],
+  "seconds": 24.6,
+  "sim_seconds": 31.0
+ },
+ {
+  "seed": 0,
+  "mode": "depth",
+  "level": "flat",
+  "passed": false,
+  "start_coverage": 0.998,
+  "corner_error_mm": 0.4,
+  "free_edge_right": null,
+  "smoothed_coverage": 0.998,
+  "drags": 0,
+  "fold1": false,
+  "fold2": false,
+  "size_mm": [
+   245,
+   177
+  ],
+  "note": "first fold failed: 245 x 177 mm",
+  "steps": [
+   {
+    "step": "fold1",
+    "ok": false,
+    "coverage": 0.213,
+    "why": "towel is now 245 by 177 mm, wanted a short side near 200"
+   }
+  ],
+  "frames": [
+   "lau_flat_depth_0_0.png",
+   "lau_flat_depth_0_1.png",
+   "lau_flat_depth_0_2.png"
+  ],
+  "seconds": 14.4,
+  "sim_seconds": 16.9
+ },
+ {
+  "seed": 1,
+  "mode": "depth",
+  "level": "flat",
+  "passed": false,
+  "start_coverage": 0.998,
+  "corner_error_mm": 0.9,
+  "free_edge_right": null,
+  "smoothed_coverage": 0.998,
+  "drags": 0,
+  "fold1": false,
+  "fold2": false,
+  "size_mm": [
+   364,
+   328
+  ],
+  "note": "first fold failed: 364 x 328 mm",
+  "steps": [
+   {
+    "step": "fold1",
+    "ok": false,
+    "coverage": 0.608,
+    "why": "towel is now 364 by 328 mm, wanted a short side near 200"
+   }
+  ],
+  "frames": [],
+  "seconds": 13.9,
+  "sim_seconds": 17.1
+ },
+ {
+  "seed": 2,
+  "mode": "depth",
+  "level": "flat",
+  "passed": false,
+  "start_coverage": 0.997,
+  "corner_error_mm": 0.5,
+  "free_edge_right": null,
+  "smoothed_coverage": 0.997,
+  "drags": 0,
+  "fold1": false,
+  "fold2": false,
+  "size_mm": [
+   124,
+   114
+  ],
+  "note": "first fold failed: 124 x 114 mm",
+  "steps": [
+   {
+    "step": "fold1",
+    "ok": false,
+    "coverage": 0.067,
+    "why": "towel is now 124 by 114 mm, wanted a short side near 200"
+   }
+  ],
+  "frames": [],
+  "seconds": 13.9,
+  "sim_seconds": 17.2
+ },
+ {
+  "seed": 3,
+  "mode": "depth",
+  "level": "flat",
+  "passed": false,
+  "start_coverage": 0.998,
+  "corner_error_mm": 0.3,
+  "free_edge_right": null,
+  "smoothed_coverage": 0.998,
+  "drags": 0,
+  "fold1": false,
+  "fold2": false,
+  "size_mm": [
+   166,
+   153
+  ],
+  "note": "first fold failed: 166 x 153 mm",
+  "steps": [
+   {
+    "step": "fold1",
+    "ok": false,
+    "coverage": 0.128,
+    "why": "towel is now 166 by 153 mm, wanted a short side near 200"
+   }
+  ],
+  "frames": [],
+  "seconds": 13.7,
+  "sim_seconds": 16.7
+ }
+]

@@ -1,0 +1,497 @@
+[
+ {
+  "slug": "bottle",
+  "name": "Pick a 40 mm bottle and place it on the pad",
+  "src": "the race bottle",
+  "passed": true,
+  "calls": [
+   {
+    "verb": "grasp",
+    "args": {
+     "name": "bottle",
+     "lift": true
+    },
+    "ok": true,
+    "attempts": 1,
+    "detail": "attempt 1: 2 pads, 91 N, lifted 104 mm, slip 0 mm, squeeze 180/255 across 40 mm",
+    "seconds": 0.1
+   },
+   {
+    "verb": "place",
+    "args": {
+     "name": "bottle",
+     "at": "target",
+     "on": null,
+     "xy": null
+    },
+    "ok": true,
+    "attempts": 1,
+    "detail": "attempt 1: set down 3 mm from target, bottom -2 mm off the surface",
+    "seconds": 0.1
+   },
+   {
+    "verb": "expect",
+    "args": {
+     "pred": "at(bottle,target)"
+    },
+    "ok": true,
+    "attempts": 1,
+    "detail": "bottle is 3 mm from target",
+    "seconds": 0.0
+   }
+  ],
+  "frames": [
+   "api_bottle_0.png",
+   "api_bottle_1.png"
+  ],
+  "seconds": 0.6,
+  "sim_seconds": 12.5
+ },
+ {
+  "slug": "cup",
+  "name": "Pick up an 80 mm cup and place it",
+  "src": "SHAP lift light object",
+  "passed": true,
+  "calls": [
+   {
+    "verb": "grasp",
+    "args": {
+     "name": "cup",
+     "lift": true
+    },
+    "ok": true,
+    "attempts": 1,
+    "detail": "attempt 1: 2 pads, 108 N, lifted 104 mm, slip 0 mm, squeeze 60/255 across 80 mm",
+    "seconds": 0.1
+   },
+   {
+    "verb": "place",
+    "args": {
+     "name": "cup",
+     "at": "target",
+     "on": null,
+     "xy": null
+    },
+    "ok": true,
+    "attempts": 1,
+    "detail": "attempt 1: set down 3 mm from target, bottom -2 mm off the surface",
+    "seconds": 0.1
+   },
+   {
+    "verb": "expect",
+    "args": {
+     "pred": "at(cup,target)"
+    },
+    "ok": true,
+    "attempts": 1,
+    "detail": "cup is 3 mm from target",
+    "seconds": 0.0
+   }
+  ],
+  "frames": [
+   "api_cup_0.png",
+   "api_cup_1.png"
+  ],
+  "seconds": 0.3,
+  "sim_seconds": 12.4
+ },
+ {
+  "slug": "ball",
+  "name": "Grasp a 70 mm ball and place it",
+  "src": "ARAT grasp ball",
+  "passed": true,
+  "calls": [
+   {
+    "verb": "grasp",
+    "args": {
+     "name": "ball",
+     "lift": true
+    },
+    "ok": true,
+    "attempts": 1,
+    "detail": "attempt 1: 2 pads, 101 N, lifted 104 mm, slip 0 mm, squeeze 90/255 across 70 mm",
+    "seconds": 0.1
+   },
+   {
+    "verb": "place",
+    "args": {
+     "name": "ball",
+     "at": "target",
+     "on": null,
+     "xy": null
+    },
+    "ok": true,
+    "attempts": 1,
+    "detail": "attempt 1: set down 5 mm from target, bottom -2 mm off the surface",
+    "seconds": 0.1
+   },
+   {
+    "verb": "expect",
+    "args": {
+     "pred": "at(ball,target)"
+    },
+    "ok": true,
+    "attempts": 1,
+    "detail": "ball is 5 mm from target",
+    "seconds": 0.0
+   }
+  ],
+  "frames": [
+   "api_ball_0.png",
+   "api_ball_1.png"
+  ],
+  "seconds": 0.3,
+  "sim_seconds": 12.4
+ },
+ {
+  "slug": "cube25",
+  "name": "Pinch a 25 mm block and place it",
+  "src": "ARAT grasp block 2.5 cm",
+  "passed": true,
+  "calls": [
+   {
+    "verb": "grasp",
+    "args": {
+     "name": "block",
+     "lift": true
+    },
+    "ok": true,
+    "attempts": 1,
+    "detail": "attempt 1: 2 pads, 94 N, lifted 90 mm, slip 14 mm, squeeze 225/255 across 25 mm",
+    "seconds": 0.1
+   },
+   {
+    "verb": "place",
+    "args": {
+     "name": "block",
+     "at": "target",
+     "on": null,
+     "xy": null
+    },
+    "ok": true,
+    "attempts": 1,
+    "detail": "attempt 1: set down 2 mm from target, bottom -2 mm off the surface",
+    "seconds": 0.1
+   },
+   {
+    "verb": "expect",
+    "args": {
+     "pred": "at(block,target)"
+    },
+    "ok": true,
+    "attempts": 1,
+    "detail": "block is 2 mm from target",
+    "seconds": 0.0
+   }
+  ],
+  "frames": [
+   "api_cube25_0.png",
+   "api_cube25_1.png"
+  ],
+  "seconds": 0.4,
+  "sim_seconds": 12.5
+ },
+ {
+  "slug": "box",
+  "name": "Pick a 60 by 40 by 30 mm box across its narrow side",
+  "src": "Jebsen small common objects",
+  "passed": true,
+  "calls": [
+   {
+    "verb": "grasp",
+    "args": {
+     "name": "box",
+     "lift": true
+    },
+    "ok": true,
+    "attempts": 1,
+    "detail": "attempt 1: 2 pads, 88 N, lifted 94 mm, slip 10 mm, squeeze 180/255 across 40 mm",
+    "seconds": 0.1
+   },
+   {
+    "verb": "place",
+    "args": {
+     "name": "box",
+     "at": "target",
+     "on": null,
+     "xy": null
+    },
+    "ok": true,
+    "attempts": 1,
+    "detail": "attempt 1: set down 2 mm from target, bottom -2 mm off the surface",
+    "seconds": 0.1
+   },
+   {
+    "verb": "expect",
+    "args": {
+     "pred": "at(box,target)"
+    },
+    "ok": true,
+    "attempts": 1,
+    "detail": "box is 2 mm from target",
+    "seconds": 0.0
+   }
+  ],
+  "frames": [
+   "api_box_0.png",
+   "api_box_1.png"
+  ],
+  "seconds": 0.3,
+  "sim_seconds": 12.5
+ },
+ {
+  "slug": "heavy",
+  "name": "Lift a 450 g can and place it",
+  "src": "Jebsen large heavy cans",
+  "passed": true,
+  "calls": [
+   {
+    "verb": "grasp",
+    "args": {
+     "name": "can",
+     "lift": true
+    },
+    "ok": true,
+    "attempts": 1,
+    "detail": "attempt 1: 2 pads, 103 N, lifted 104 mm, slip 0 mm, squeeze 78/255 across 74 mm",
+    "seconds": 0.1
+   },
+   {
+    "verb": "place",
+    "args": {
+     "name": "can",
+     "at": "target",
+     "on": null,
+     "xy": null
+    },
+    "ok": true,
+    "attempts": 1,
+    "detail": "attempt 1: set down 3 mm from target, bottom -2 mm off the surface",
+    "seconds": 0.1
+   },
+   {
+    "verb": "expect",
+    "args": {
+     "pred": "at(can,target)"
+    },
+    "ok": true,
+    "attempts": 1,
+    "detail": "can is 3 mm from target",
+    "seconds": 0.0
+   }
+  ],
+  "frames": [
+   "api_heavy_0.png",
+   "api_heavy_1.png"
+  ],
+  "seconds": 0.4,
+  "sim_seconds": 12.5
+ },
+ {
+  "slug": "stack",
+  "name": "Stack a 50 mm block on another",
+  "src": "Jebsen stacking checkers",
+  "passed": true,
+  "calls": [
+   {
+    "verb": "grasp",
+    "args": {
+     "name": "blockA",
+     "lift": true
+    },
+    "ok": true,
+    "attempts": 1,
+    "detail": "attempt 1: 2 pads, 95 N, lifted 104 mm, slip 0 mm, squeeze 150/255 across 50 mm",
+    "seconds": 0.2
+   },
+   {
+    "verb": "place",
+    "args": {
+     "name": "blockA",
+     "at": null,
+     "on": "blockB",
+     "xy": null
+    },
+    "ok": true,
+    "attempts": 1,
+    "detail": "attempt 1: set down 2 mm from target, bottom -0 mm off the surface",
+    "seconds": 0.1
+   },
+   {
+    "verb": "expect",
+    "args": {
+     "pred": "on(blockA,blockB)"
+    },
+    "ok": true,
+    "attempts": 1,
+    "detail": "blockA is 1 mm off centre and -0 mm above blockB",
+    "seconds": 0.0
+   }
+  ],
+  "frames": [
+   "api_stack_0.png",
+   "api_stack_1.png"
+  ],
+  "seconds": 0.4,
+  "sim_seconds": 12.4
+ },
+ {
+  "slug": "button",
+  "name": "Press a large button",
+  "src": "RoboCasa press button",
+  "passed": true,
+  "calls": [
+   {
+    "verb": "press",
+    "args": {
+     "name": "button",
+     "depth": 0.015
+    },
+    "ok": true,
+    "attempts": 1,
+    "detail": "attempt 1: button travelled 16.4 mm",
+    "seconds": 0.1
+   },
+   {
+    "verb": "expect",
+    "args": {
+     "pred": "pressed(button)"
+    },
+    "ok": true,
+    "attempts": 1,
+    "detail": "button sits at 0.1 mm travel now (it springs back; the press verb measured the travel while pressed)",
+    "seconds": 0.0
+   }
+  ],
+  "frames": [
+   "api_button_0.png"
+  ],
+  "seconds": 0.2,
+  "sim_seconds": 7.6
+ },
+ {
+  "slug": "drawer",
+  "name": "Open a drawer by its handle",
+  "src": "RoboCasa open drawer",
+  "passed": true,
+  "calls": [
+   {
+    "verb": "grasp",
+    "args": {
+     "name": "drawer",
+     "lift": false
+    },
+    "ok": true,
+    "attempts": 1,
+    "detail": "holding drawer in place, 2 pads, 88 N",
+    "seconds": 0.1
+   },
+   {
+    "verb": "open",
+    "args": {
+     "name": "drawer"
+    },
+    "ok": true,
+    "attempts": 1,
+    "detail": "drawer moved 150 mm of 150 asked",
+    "seconds": 0.1
+   },
+   {
+    "verb": "expect",
+    "args": {
+     "pred": "open(drawer)"
+    },
+    "ok": true,
+    "attempts": 1,
+    "detail": "drawer is open by 152 mm",
+    "seconds": 0.0
+   }
+  ],
+  "frames": [
+   "api_drawer_0.png"
+  ],
+  "seconds": 0.2,
+  "sim_seconds": 10.1
+ },
+ {
+  "slug": "knob",
+  "name": "Turn a knob a quarter turn",
+  "src": "RoboCasa twist knob",
+  "passed": true,
+  "calls": [
+   {
+    "verb": "grasp",
+    "args": {
+     "name": "knob",
+     "lift": false
+    },
+    "ok": true,
+    "attempts": 1,
+    "detail": "holding knob in place, 2 pads, 99 N",
+    "seconds": 0.1
+   },
+   {
+    "verb": "turn",
+    "args": {
+     "name": "knob",
+     "deg": 90
+    },
+    "ok": true,
+    "attempts": 1,
+    "detail": "knob turned 96 of 90 degrees asked",
+    "seconds": 0.2
+   },
+   {
+    "verb": "expect",
+    "args": {
+     "pred": "turned(knob,60)"
+    },
+    "ok": true,
+    "attempts": 1,
+    "detail": "knob is turned 96 degrees",
+    "seconds": 0.0
+   }
+  ],
+  "frames": [
+   "api_knob_0.png"
+  ],
+  "seconds": 0.3,
+  "sim_seconds": 10.8
+ },
+ {
+  "slug": "push",
+  "name": "Push a crate 100 mm sideways",
+  "src": "RoboCasa push / slide",
+  "passed": true,
+  "calls": [
+   {
+    "verb": "push",
+    "args": {
+     "name": "crate",
+     "dx": 0.0,
+     "dy": -0.1,
+     "dist": null
+    },
+    "ok": true,
+    "attempts": 1,
+    "detail": "attempt 1: crate moved 106 mm of 100 asked",
+    "seconds": 0.2
+   },
+   {
+    "verb": "expect",
+    "args": {
+     "pred": "moved(crate,0.07)"
+    },
+    "ok": true,
+    "attempts": 1,
+    "detail": "crate moved 107 mm from where it started",
+    "seconds": 0.0
+   }
+  ],
+  "frames": [
+   "api_push_0.png"
+  ],
+  "seconds": 0.3,
+  "sim_seconds": 8.8
+ }
+]

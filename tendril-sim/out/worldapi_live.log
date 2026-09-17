@@ -1,0 +1,15 @@
+== drawer: Open a drawer by its handle
+WARNING: Attach conflict when attaching 'robotiq_2f85' to 'ur5e', policy is 'warning'
+impratio: parent has 1 (default), child has 10, keeping parent value
+cone: parent has 0 (default), child has 1, keeping parent value
+
+/Users/skyler/Projects/research/Robotics/tendril-sim/prototypes.py:85: UserWarning: Attach conflict when attaching 'robotiq_2f85' to 'ur5e', policy is 'warning'
+impratio: parent has 1 (default), child has 10, keeping parent value
+cone: parent has 0 (default), child has 1, keeping parent value
+  m = arm.compile(); d = mujoco.MjData(m); mujoco.mj_forward(m, d)
+WARNING: Attach conflict when attaching 'robotiq_2f85' to 'ur5e', policy is 'warning'
+impratio: parent has 5, child has 10, keeping parent value
+
+/Users/skyler/Projects/research/Robotics/tendril-sim/worldapi.py:54: UserWarning: Attach conflict when attaching 'robotiq_2f85' to 'ur5e', policy is 'warning'
+impratio: parent has 5, child has 10, keeping parent value
+  self.m = m = spec.compile(); self.d = d = mujoco.MjData(m); self.live = live; self.pace = pace

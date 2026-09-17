@@ -1,0 +1,29 @@
+[
+ {
+  "slug": "ball",
+  "name": "Grasp a 70 mm ball and place it",
+  "src": "ARAT grasp ball",
+  "kind": "pickplace",
+  "tendrils_in_contact": 18,
+  "grasp_force_N": 7.96,
+  "close_deg": 56.4,
+  "lift_mm": 180.2,
+  "slip_mm": 7.8,
+  "place_error_mm": 21.9,
+  "upright": false,
+  "final_height_mm": 34.6,
+  "passed": true,
+  "frames": [
+   "cat_ball_0.png",
+   "cat_ball_1.png",
+   "cat_ball_2.png",
+   "cat_ball_3.png",
+   "cat_ball_4.png",
+   "cat_ball_5.png",
+   "cat_ball_6.png"
+  ],
+  "sim_s": 22.0,
+  "wall_s": 143.4,
+  "video_kb": 748
+ }
+]
