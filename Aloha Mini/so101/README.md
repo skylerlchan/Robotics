@@ -6,6 +6,7 @@ into this Mac. Two layers over one shared config:
 | Layer | Entry point | Uses | Good for |
 |---|---|---|---|
 | **raw ticks** | `teleop.py` | in-servo calibration only, no files | driving the arm now; lowest latency |
+| **scripted** | `arm.py` | in-servo calibration only, no files | commanding the arm from code — no leader, no human |
 | **stock lerobot** | `teleop_lerobot.sh`, `record.sh` | lerobot calibration JSONs | recording datasets, training policies |
 
 Ports, tuning and dataset settings all live in **`arms.toml`** — edit there, not in

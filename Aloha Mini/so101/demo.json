@@ -1,0 +1,11 @@
+[
+  {"pose": "rest", "secs": 3},
+  {"gripper": 100, "secs": 1.5},
+  {"shoulder_pan": 25, "secs": 2},
+  {"wait": 0.5},
+  {"gripper": 0, "secs": 1.5},
+  {"shoulder_pan": -25, "secs": 3},
+  {"wait": 0.5},
+  {"gripper": 100, "secs": 1.5},
+  {"pose": "rest", "secs": 3}
+]
