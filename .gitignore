@@ -1,0 +1,30 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# --- Secrets / local env ---
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# --- macOS ---
+.DS_Store
+
+# --- Local tooling state ---
+.context/
+
+# --- Third-party checkouts not tracked as submodules ---
+/lerobot/
+
+# --- MuJoCo / sim artifacts ---
+MUJOCO_LOG.TXT
+tendril-sim/out/
+
+# --- Browser automation profiles (Chrome user-data dirs) ---
+tendril-sim/tcp/
+tendril-sim/tsp/

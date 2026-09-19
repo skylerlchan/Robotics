@@ -1,2 +1,0 @@
-{'slug': 'bottle', 'name': 'Pick up a bottle, carry it, place it', 'src': 'SHAP', 'kind': 'pickplace', 'tendrils_in_contact': 24, 'grasp_force_N': np.float64(8.03), 'close_deg': 56.4, 'lift_mm': 166.5, 'slip_mm': 3.6, 'place_error_mm': 6.8, 'upright': True, 'final_height_mm': 59.9, 'passed': True, 'sim_s': 21.9, 'wall_s': 118.5, 'video_kb': 0}
-task finished; window stays open. close it to exit.

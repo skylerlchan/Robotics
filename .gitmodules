@@ -1,0 +1,12 @@
+[submodule "Aloha Mini/AlohaMini"]
+	path = Aloha Mini/AlohaMini
+	url = https://github.com/liyiteng/AlohaMini.git
+[submodule "Aloha Mini/lerobot_alohamini"]
+	path = Aloha Mini/lerobot_alohamini
+	url = https://github.com/liyiteng/lerobot_alohamini.git
+[submodule "kindergarden"]
+	path = kindergarden
+	url = https://github.com/Princeton-Robot-Planning-and-Learning/kindergarden.git
+[submodule "tendril-sim/third_party/mujoco_menagerie"]
+	path = tendril-sim/third_party/mujoco_menagerie
+	url = https://github.com/google-deepmind/mujoco_menagerie.git

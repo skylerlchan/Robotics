@@ -1,2 +1,0 @@
-PASS ball {"slug": "ball", "tendrils_in_contact": 18, "grasp_force_N": 7.96, "close_deg": 56.4, "lift_mm": 180.2, "slip_mm": 7.8, "place_error_mm": 21.9, "upright": false, "final_height_mm": 34.6, "passed": true, "sim_s": 22.0, "wall_s": 143.4, "video_kb": 748}
-1 of 1 passed
