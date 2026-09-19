@@ -47,6 +47,51 @@ alone the follower's servos read ~5 V, cannot hold torque, and the arm slumps to
 its hard stop — `teleop.py` refuses to start and prints why. `--wait-for-power`
 polls until the supply appears instead of exiting.
 
+## Scripted control (`arm.py`)
+
+`teleop.py` needs a human holding the leader. `arm.py` drives the follower straight
+from code, which is what lets a script — or Claude Code — run the robot.
+
+```bash
+$PY arm.py status                  # positions + limits + voltage, never torques
+$PY arm.py relax                   # torque off, arm goes limp (support it first)
+$PY arm.py teach rest              # pose it by hand, save where it is
+$PY arm.py pose rest               # go back there
+$PY arm.py move elbow_flex=-30 wrist_flex=15
+$PY arm.py gripper open|close|40
+$PY arm.py home                    # every joint to 0 deg
+$PY arm.py play demo.json          # run a sequence
+```
+
+Angles are **degrees from centre** (tick 2048 = 0°), matching the SO-101
+convention. The gripper is the exception: `0` = closed, `100` = open, mapped onto
+whatever range that servo was actually calibrated to.
+
+From Python:
+
+```python
+from arm import Arm
+with Arm() as a:
+    a.move({"shoulder_pan": 20}, secs=2)
+    a.gripper(0)
+    print(a.read_deg())
+```
+
+Two differences from teleop worth knowing:
+
+- **Nothing holds the arm back.** With a leader in the loop a human feels the
+  collision; a scripted target just drives into it. `--dry-run` prints the planned
+  travel per joint and exits without energising anything — use it on a new move.
+- **A move leaves the arm holding its goal.** Torque stays on when the command
+  exits, because a limp arm falls. `arm.py relax` is the only thing that releases
+  it (or `Arm(release_on_exit=True)` in a `with` block).
+
+Same safety layer as `teleop.py`: under-voltage refusal, capped `Acceleration` and
+`Goal_Velocity`, torque enabled one joint at a time with 150 ms gaps, every target
+clamped to `arms.toml` **intersected with each servo's own `Min`/`Max_Position_Limit`**,
+and all motion interpolated with a per-cycle step clamp so the arm never gets a
+step change. Saved poses live in `poses.json`.
+
 ## The gripper mapping
 
 The two grippers were calibrated to different ranges — leader `1686–2945`
@@ -126,6 +171,9 @@ ports.py             board discovery; serial -> device, voltage -> role   (share
 probe.py             read-only register dump of every board
 snapshot.py          in-servo calibration <-> lerobot JSON (backup/install/restore)
 teleop.py            raw-tick teleop (supersedes ../teleop_direct.py)
+arm.py               scripted control — move/pose/teach/gripper/play, no leader
+poses.json           poses saved by `arm.py teach` (created on first use)
+demo.json            example `arm.py play` sequence
 _env.sh              shell prelude: resolves the env and both ports once
 teleop_lerobot.sh    stock lerobot-teleoperate
 record.sh            stock lerobot-record
