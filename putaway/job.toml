@@ -1,0 +1,20 @@
+# One put-away job. Edit this, not the code.
+#
+# Every object and every bin wears a printed marker (see markers.py). An object
+# counts as home when its marker sits within `radius` bin-marker widths of its
+# bin's marker. Keep the camera fixed: same view every run, or the numbers drift.
+
+name = "desk put-away"
+camera = 0          # 0 = built-in camera; use `lerobot-find-cameras` or try 1, 2 for a USB one
+dict = "DICT_4X4_50"
+marker_mm = 40      # printed size, used by markers.py
+
+[bins]
+10 = { name = "parts tray", radius = 2.0 }
+11 = { name = "sock basket", radius = 2.0 }
+
+[objects]
+0 = { name = "blue mug", home = 10 }
+1 = { name = "sock", home = 11 }
+2 = { name = "tape roll", home = 10 }
+3 = { name = "sock B", home = 11 }

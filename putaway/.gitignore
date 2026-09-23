@@ -1,0 +1,5 @@
+runs/
+runs.jsonl
+markers.png
+selftest.jpg
+__pycache__/
